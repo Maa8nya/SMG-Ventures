@@ -11,6 +11,12 @@ export default function HomePage() {
         <Intro onFinish={() => setShowMainContent(true)} />
       ) : (
         <HomeContent />
+       <Homepage />
+          <HeroSection />
+          <ServicesCarousel />
+          <ResearchReports />
+          <TestimonialsSection />
+          <ScrollRevealHero />
       )}
     </>
   );
