@@ -1,0 +1,133 @@
+body {
+      background: #111;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+      background: #000;
+      margin-top: auto;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .footer-top {
+      margin-bottom: 40px;
+    }
+
+    .footer-headline {
+      font-size: 65px;
+      font-weight: bold;
+      margin-left: 100px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+
+    .footer-links > div {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 25px;
+      padding-left: 30px;
+    }
+
+    .footer-links div div {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links div div::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      height: 3px;
+      width: 0;
+      background-color: white; /* 👈 Changed from orange to white */
+      transition: width 0.4s ease;
+    }
+
+    .footer-links div div:hover,
+    .footer-links div div:focus {
+      color: orange;
+    }
+
+    .footer-links div div:hover::after,
+    .footer-links div div:focus::after {
+      width: 100%;
+    }
+
+    .footer-bottom {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    
+    .lottie-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+      height: 400px;
+      overflow: hidden;
+      margin-right: 300px;
+    }
+
+    .lottie-container lottie-player {
+      width: 600px;
+      height: 600px;
+      transform: translateY(-50px);
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-headline {
+        font-size: 32px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-left: 200px;
+      }
+
+      .lottie-container {
+        max-width: 300px;
+        height: 250px;
+      }
+
+      .lottie-container lottie-player {
+        width: 400px;
+        height: 400px;
+        transform: translateY(-40px);
+      }
+    }
