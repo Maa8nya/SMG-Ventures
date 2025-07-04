@@ -1,11 +1,18 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import ContactSection from "./components/ContactSection";
 import CollaborationSection from "./components/CollaborationSection";
-import ContactSection from "./components/ContactSection"; 
 
 function App() {
   return (
-    <div classsName="bg-[1b252c">
-      <CollaborationSection />
-      <ContactSection />
+    <div className="bg-[#1b252c]  text-white">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<ContactSection />} />
+          <Route path="/collaboration" element={<CollaborationSection />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
