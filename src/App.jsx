@@ -15,12 +15,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Homepage />
-          <HeroSection />
-          <ServicesCarousel />
-          <ResearchReports />
-          <TestimonialsSection />
-          <ScrollRevealHero />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/collaboration" element={<CollaborationSection />} />
         </Routes>
