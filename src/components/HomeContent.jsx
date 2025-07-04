@@ -1,4 +1,4 @@
-import NavBar from "../assets/NavBar";
+import Navbar from './Navbar';
 import { motion } from "framer-motion";
 import ParticlesBackground from "../assets/ParticlesBackground";
 import WhySMGVentures from "./WhySMGVentures";
