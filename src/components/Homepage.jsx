@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import sampleVideo from '../assets/smg-video.mp4';
-import Navbar from './Navbar'; 
 
 export default function HomepageHero() {
   const videoRef = useRef(null);
