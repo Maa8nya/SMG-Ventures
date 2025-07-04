@@ -1,11 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Homepage from './components/Homepage';
-import HeroSection from './components/HeroSection';
-import ServicesCarousel from './components/ServicesCarousel';
-import ResearchReports from './components/ResearchReports';
-import TestimonialsSection from './components/TestimonialsSection';
-import ScrollRevealHero from './components/ScrollRevealHero';
 import ContactSection from "./components/ContactSection";
 import CollaborationSection from "./components/CollaborationSection";
 
