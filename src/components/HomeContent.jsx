@@ -1,7 +1,6 @@
 import Navbar from './Navbar';
 import { motion } from "framer-motion";
 import ParticlesBackground from "../assets/ParticlesBackground";
-import WhySMGVentures from "./WhySMGVentures";
 
 
 const DURATION = 0.25;
@@ -59,8 +58,8 @@ const FlipLink = ({ children, className = "" }) => {
 
 function HomeContent() {
   return (
-    <div className="min-h-screen bg-[#1b252c] text-white transition-all duration-500 ease-in-out">
-      <NavBar />
+    <div className="min-h-screen bg-[#141d26] text-white transition-all duration-500 ease-in-out">
+      <Navbar />
       <div className="px-4 py-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center min-h-[85vh] px-4 sm:px-6 gap-10 md:gap-20 font-['Roboto'] transition-all duration-300">
           {/* Left: Title and Subtitle */}
@@ -88,7 +87,7 @@ function HomeContent() {
 </motion.div>
 
         </div>
-         <WhySMGVentures/>
+         
       </div>
              
     </div>

@@ -30,12 +30,14 @@ const Footer = () => {
       </div>
 
       <div className="lottie-container">
-        <lottie-player 
-          src="https://cdn.lottielab.com/l/8AgRoYRqd6sMpy.json" 
-          loop 
-          autoplay>
-        </lottie-player>
-      </div>
+  <lottie-player 
+    src="https://cdn.lottielab.com/l/8AgRoYRqd6sMpy.json" 
+    loop 
+    autoplay 
+    style={{ filter: "contrast(1.5)" }}>
+  </lottie-player>
+</div>
+
     </footer>
   );
 };

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import Intro from "./Intro"; // your animated intro component
 import HomeContent from "./HomeContent";
-import Homepage from './components/Homepage';
-import HeroSection from './components/HeroSection';
-import ServicesCarousel from './components/ServicesCarousel';
-import ResearchReports from './components/ResearchReports';
-import TestimonialsSection from './components/TestimonialsSection';
-import ScrollRevealHero from './components/ScrollRevealHero';
-import ContactSection from "./components/ContactSection";
-import ResponseCard from "./components/ResponseCard";
-import CollaborationSection from "./components/CollaborationSection";
+import Homepage from './Homepage';
+import HeroSection from './HeroSection';
+import ServicesCarousel from './ServicesCarousel';
+import ResearchReports from './ResearchReports';
+import TestimonialsSection from './TestimonialsSection'; 
+import ScrollRevealHero from './ScrollRevealHero';
+import Footer from './Footer';
+import ContactSection from "./ContactSection";
+import ResponseCard from "./ResponseCard";
+import WhySMGVentures from "./WhySMGVentures";
+import CollaborationSection from "./CollaborationSection";
 
 export default function HomePage() {
   const [showMainContent, setShowMainContent] = useState(false);
@@ -19,14 +21,18 @@ export default function HomePage() {
       {!showMainContent ? (
         <Intro onFinish={() => setShowMainContent(true)} />
       ) : (
-        <HomeContent />
-       <Homepage />
+        <div>
+          <HomeContent />
+        <Homepage />
           <HeroSection />
           <ServicesCarousel />
           <ResearchReports />
           <TestimonialsSection />
+          <WhySMGVentures/>
           <ScrollRevealHero />
-      <ResponseCard />
+      <Footer />
+        </div>
+       
       )}
     </>
   );

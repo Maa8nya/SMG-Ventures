@@ -21,7 +21,6 @@ export default function HomepageHero() {
   return (
     <div className="min-h-screen bg-[#141d26] text-white font-sans">
 
-      <Navbar /> 
 
       {/* HERO */}
       <div className="flex items-center justify-center px-8 py-20">
