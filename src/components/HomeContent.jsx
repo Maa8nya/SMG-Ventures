@@ -1,6 +1,5 @@
 import Navbar from './Navbar';
 import { motion } from "framer-motion";
-import ParticlesBackground from "../assets/ParticlesBackground";
 
 
 const DURATION = 0.25;

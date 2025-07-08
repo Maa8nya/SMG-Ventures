@@ -5,7 +5,7 @@ import VerticalScroll from './VerticalScroll';
 import ResearchReports from './ResearchReports';
 import Footer from './Footer';
 import WhySMGVentures from "./WhySMGVentures";
-import Certifications from "./certification";
+import Certifications from "./Certification";
 
 export default function HomePage() {
   const [showMainContent, setShowMainContent] = useState(false);
