@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Intro from "./Intro"; // your animated intro component
 import HomeContent from "./HomeContent";
-import HeroSection from './HeroSection';
+import VerticalScroll from './VerticalScroll';
 import ResearchReports from './ResearchReports';
 import Footer from './Footer';
 import WhySMGVentures from "./WhySMGVentures";
@@ -16,7 +16,7 @@ export default function HomePage() {
       ) : (
         <div>
           <HomeContent />
-          <HeroSection />
+          <VerticalScroll/>
           <ResearchReports />
           <WhySMGVentures/>
       <Footer />
