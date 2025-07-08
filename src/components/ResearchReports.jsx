@@ -1,77 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import './ResearchReports.css';
-import research1 from '../images/research1.png';
-import research2 from '../images/research2.png';
-import research3 from '../images/research3.png';
-import research4 from '../images/research4.png';
+import pravinya from '../images/pravinya.png';
+import skyneski from '../images/skyneski.png';
+import smg from '../images/smg.png';
 
 const reports = [
   {
     title: 'Crafting Skills, Creating Leaders.',
     subtitle:
-      'Pravinya upskills students & professionals with tech/non-tech workshops, internships, global guidance & psychometric assessments. Our goal is to bridge the gap between education and industry, building confident, capable leaders of tomorrow.',
-    image: research1,
+      'Pravinya empowers students and professionals with cutting-edge workshops, certifications, project mentorship, and career-focused internships. We bridge the gap between education and industry, making learners globally competent and future-ready.',
+    image: pravinya,
   },
   {
     title: 'Driven by Data. Inspired by Innovation.',
     subtitle:
-      'Sykneski delivers full-stack digital & IT services—from cloud to backend—tailored for smart, scalable, secure solutions. We help organizations digitize intelligently, automate efficiently, and grow with purpose.',
-    image: research2,
+      'Sykneski drives digital transformation with custom software, secure cloud solutions, and data-driven strategies. From robust backend systems to scalable tech architectures, we empower businesses to innovate and grow with confidence.',
+    image: skyneski,
   },
   {
     title: 'Building Dreams, Creating Assets.',
     subtitle:
-      'SMG Builders brings trust, transparency, and technical quality to real estate, with turnkey construction and consulting. Whether residential or commercial, we turn your vision into lasting value.',
-    image: research3,
-  },
-  {
-    title: 'Innovating Across Industries',
-    subtitle:
-      'SMG Ventures unites education, technology & real estate to deliver future-ready, cross-domain solutions. Through synergy and strategy, we drive transformation that’s scalable, sustainable, and impactful.',
-    image: research4,
+      'SMG Builders delivers trust and quality in real estate and construction. Whether residential or commercial, we offer property consulting, land development, and turnkey projects—turning your vision into lasting value.',
+    image: smg,
   },
 ];
 
-const ResearchReports = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
+export default function ResearchReports() {
   return (
-    <div className="research-container">
-      {reports.map((report, index) => {
-        const isHovered = hoveredIndex === index;
-
-        return (
-          <motion.div
-            key={index}
-            className={`research-card ${isHovered ? 'hovered' : ''}`}
+    <div className="research-container" style={{ backgroundColor: "#141d26" }}>
+      {reports.map((report, index) => (
+        <motion.div
+          key={index}
+          className="research-card"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+        >
+          <div
+            className="image-layer"
             style={{ backgroundImage: `url(${report.image})` }}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-          >
-            <div className="overlay">
-              <h2 className="title">{report.title}</h2>
-              {isHovered && (
-                <motion.p
-                  className="description"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {report.subtitle}
-                </motion.p>
-              )}
+          ></div>
+
+          <div className="text-layer">
+            <div className="text-content">
+              <h2>{report.title}</h2>
+              <p>{report.subtitle}</p>
             </div>
-          </motion.div>
-        );
-      })}
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
-};
-
-export default ResearchReports;
+}
