@@ -9,8 +9,7 @@ export default function Navbar() {
       {/* Logo & Dropdown */}
       <div className="relative group">
         <div className="flex items-center space-x-2 cursor-pointer">
-          <img src={smgLogo} alt="SMG Logo" className="w-20 h-20 object-contain" />
-          <span className="font-bold text-xl">Ventures</span>
+          <img src="./logo.svg" alt="SMG Logo" className="w-full h-10 object-contain" />
         </div>
 
         <div className="absolute left-0 mt-3 bg-[#1f2937] rounded-lg shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 p-4 space-y-3 z-20">

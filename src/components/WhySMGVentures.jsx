@@ -5,22 +5,22 @@ const data = [
   {
     title: "Multi-Domain Expertise",
     desc: "Education, Technology, and Real Estate",
-    icon: "M",
+    icon: "<>",
   },
   {
     title: "Client-Centric Approach",
     desc: "Tailored services to meet unique needs",
-    icon: "C",
+    icon: "<>",
   },
   {
     title: "Integrated Solutions",
     desc: "Cross-vertical collaboration for better outcomes",
-    icon: "I",
+    icon: "<>",
   },
   {
     title: "Committed to Excellence",
     desc: "Quality-driven processes across all brands",
-    icon: "C",
+    icon: "<>",
   },
 ];
 

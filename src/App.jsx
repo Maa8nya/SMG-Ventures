@@ -5,7 +5,7 @@ import CollaborationSection from "./components/CollaborationSection";
 
 function App() {
   return (
-    <div className="bg-[#1b252c]  text-white">
+    <div className="bg-[#141d26]  text-white">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
