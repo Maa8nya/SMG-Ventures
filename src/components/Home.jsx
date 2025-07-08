@@ -5,6 +5,7 @@ import VerticalScroll from './VerticalScroll';
 import ResearchReports from './ResearchReports';
 import Footer from './Footer';
 import WhySMGVentures from "./WhySMGVentures";
+import Certifications from "./certification";
 
 export default function HomePage() {
   const [showMainContent, setShowMainContent] = useState(false);
@@ -18,7 +19,8 @@ export default function HomePage() {
           <HomeContent />
           <VerticalScroll/>
           <ResearchReports />
-          <WhySMGVentures/>
+          <WhySMGVentures />
+          <Certifications />
       <Footer />
         </div>
        
