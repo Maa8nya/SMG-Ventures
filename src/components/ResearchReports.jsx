@@ -33,10 +33,10 @@ export default function ResearchReports() {
         <motion.div
           key={index}
           className="research-card"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: index * 0.2 }}
+          initial={{ opacity: 0 }}
+whileInView={{ opacity: 1 }}
+transition={{ duration: 1.2, delay: index * 0.4 }}
+
         >
           <div
             className="image-layer"

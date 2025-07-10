@@ -25,15 +25,13 @@ export default function VerticalScroll() {
     const interval = setInterval(() => {
       const newPositions = [positions[2], positions[0], positions[1]];
 
-      // Add exiting images for AnimatePresence
       setVisibleImages([
         ...positions.map((p, i) => ({ key: keyIndex + 1, index: p })),
       ]);
 
-      // Update positions for next render
       setPositions(newPositions);
       setKeyIndex((prev) => prev + 1);
-    }, 6000); // 8s interval
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [positions, paused]);
@@ -42,11 +40,12 @@ export default function VerticalScroll() {
     <div className="min-h-screen bg-[#141d26] flex items-center justify-center px-8 py-16 relative overflow-hidden">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-        {/* Left */}
+        {/* Left with scale-up */}
         <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.5 }}
           className="space-y-6"
         >
           <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight">
@@ -58,8 +57,12 @@ export default function VerticalScroll() {
           </p>
         </motion.div>
 
-        {/* Right */}
-        <div
+        {/* Right with scale-up */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+          viewport={{ once: true, amount: 0.5 }}
           className="flex flex-col gap-8 cursor-pointer relative w-[85%] md:w-[75%] mx-auto"
           onClick={() => setPaused((prev) => !prev)}
         >
@@ -89,7 +92,7 @@ export default function VerticalScroll() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

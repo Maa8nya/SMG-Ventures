@@ -16,7 +16,7 @@ const cards = [
     link: "Explore our rankings →",
     color: "bg-purple-700",
     bg: "bg-[url('/purple-bg.png')]",
-    style: { top: "120%", right: "15%" }
+    style: { top: "180%", right: "15%" }
   },
   {
     title: "An Influential Innovator",
@@ -24,7 +24,7 @@ const cards = [
     link: "Discover our innovations →",
     color: "bg-blue-600",
     bg: "bg-[url('/blue-bg.png')]",
-    style: { top: "140%", left: "15%" }
+    style: { top: "260%", left: "15%" }
   },
 ];
 
