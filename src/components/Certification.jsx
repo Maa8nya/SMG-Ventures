@@ -40,7 +40,7 @@ export default function Certifications() {
   return (
     <section
       className="relative h-[300vh] text-white"
-      style={{ backgroundColor: "#1A232B" }}
+      
       ref={ref}
     >
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">

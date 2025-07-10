@@ -1,133 +1,132 @@
-body {
-      background: #111;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+footer {
+  background-color: #000;
+  color: white;
+  padding: 60px 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 40px;
-      background: #000;
-      margin-top: auto;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
 
-    .footer-left {
-      flex: 1;
-      max-width: 600px;
-    }
+.footer-left {
+  flex: 1;
+  min-width: 320px;
+  max-width: 700px;
+}
 
-    .footer-top {
-      margin-bottom: 40px;
-    }
+.footer-title {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
 
-    .footer-headline {
-      font-size: 65px;
-      font-weight: bold;
-      margin-left: 100px;
-    }
+.footer-links {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 30px;
+}
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 60px;
-      margin-bottom: 40px;
-    }
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 18px;
+}
 
-    .footer-links > div {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      font-size: 25px;
-      padding-left: 30px;
-    }
+.footer-column div {
+  position: relative;
+  cursor: pointer;
+}
 
-    .footer-links div div {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
+.footer-column div::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
 
-    .footer-links div div::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      height: 3px;
-      width: 0;
-      background-color: white; /* 👈 Changed from orange to white */
-      transition: width 0.4s ease;
-    }
+.footer-column div:hover::after {
+  width: 100%;
+}
 
-    .footer-links div div:hover,
-    .footer-links div div:focus {
-      color: orange;
-    }
+.footer-bottom {
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 20px;
+}
 
-    .footer-links div div:hover::after,
-    .footer-links div div:focus::after {
-      width: 100%;
-    }
+.footer-right {
+  flex: 0 0 300px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 260px;
+  padding-top: 40px;
+}
 
-    .footer-bottom {
-      font-size: 14px;
-      color: #ccc;
-    }
+.footer-tagline {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ccc;
+  text-align: center;
+}
 
-    
-    .lottie-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 600px;
-      height: 400px;
-      overflow: hidden;
-      margin-right: 300px;
-    }
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
 
-    .lottie-container lottie-player {
-      width: 600px;
-      height: 600px;
-      transform: translateY(-50px);
-    }
+  .footer-left {
+    align-items: center;
+    text-align: center;
+  }
 
-    @media (max-width: 768px) {
-      footer {
-        flex-direction: column;
-        align-items: center;
-      }
+  .footer-links {
+    flex-direction: column;
+    gap: 30px;
+  }
 
-      .footer-headline {
-        font-size: 32px;
-        text-align: center;
-      }
+  .footer-right {
+    padding-top: 0;
+  }
+}
 
-      .footer-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        margin-left: 200px;
-      }
+.footer-right {
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
 
-      .lottie-container {
-        max-width: 300px;
-        height: 250px;
-      }
+.lottie-wrapper {
+  width: 380px;
+  height: 320px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: contrast(2); /* Increase contrast */
+  transform: translateY(-20px); /* Move it up slightly to crop bottom */
+}
 
-      .lottie-container lottie-player {
-        width: 400px;
-        height: 400px;
-        transform: translateY(-40px);
-      }
-    }
+.lottie-wrapper lottie-player {
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+}

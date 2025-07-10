@@ -57,7 +57,16 @@ const FlipLink = ({ children, className = "" }) => {
 
 function HomeContent() {
   return (
-    <div className="min-h-screen bg-[#141d26] text-white transition-all duration-500 ease-in-out">
+    <div
+  className="min-h-screen text-[#DFE2E1] relative overflow-hidden transition-all duration-500 ease-in-out"
+  style={{
+    backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundBlendMode: 'overlay',
+  }}
+>
       <Navbar />
       <div className="px-4 py-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center min-h-[85vh] px-4 sm:px-6 gap-10 md:gap-20 font-['Roboto'] transition-all duration-300">

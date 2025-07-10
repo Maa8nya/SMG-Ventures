@@ -74,7 +74,16 @@ export default function WhySMGVentures() {
   const headingInView = useInView(headingRef, { once: false, amount: 0.3 });
 
   return (
-    <div className="min-h-screen px-6 py-20 space-y-16">
+    <div className="min-h-screen px-6 py-20 space-y-16"
+    style={{
+        backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+        backgroundBlendMode: 'overlay',
+
+      }}
+>
       <motion.h1
         ref={headingRef}
         initial={{ opacity: 0, scale: 0.8 }}

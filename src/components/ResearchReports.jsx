@@ -28,7 +28,15 @@ const reports = [
 
 export default function ResearchReports() {
   return (
-    <div className="research-container" style={{ backgroundColor: "#141d26" }}>
+    <div className="research-container"
+    style={{
+    backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundBlendMode: 'overlay',
+  }}
+   >
       {reports.map((report, index) => (
         <motion.div
           key={index}

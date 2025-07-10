@@ -5,12 +5,12 @@ import pravinyaLogo from '../images/pravinya-logo.png';
 
 export default function Navbar() {
   return (
-    <header className="flex justify-between items-center px-8 py-4 bg-[#0c0c0c]">
+    <header className="flex justify-between items-center px-8 py-4 bg-[#0C0C0C] border-b border-[#2a2a2a] shadow-md">
       {/* Logo & Dropdown */}
       <div className="relative group">
         <div className="flex items-center space-x-2 cursor-pointer">
-          <img src="./logo.svg" alt="SMG Logo" className="w-full h-10 object-contain" />
-        </div>
+      <img src="./logo.svg" alt="SMG Logo" className="h-10 object-contain" />
+    </div>
 
         <div className="absolute left-0 mt-3 bg-[#1f2937] rounded-lg shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 p-4 space-y-3 z-20">
           {[{ logo: skyneskiLogo, label: 'Sykneski' }, { logo: pravinyaLogo, label: 'Pravinya' }, { logo: smg_buildersLogo, label: 'SMG Builders and Constructers' }].map(({ logo, label }) => (
@@ -31,7 +31,7 @@ export default function Navbar() {
           <a
             key={name}
             href={link}
-            className="flex items-center gap-1 hover:text-red-400 cursor-pointer"
+            className="flex items-center gap-1 text-[#DFE2E1] hover:text-[#FF5859] transition-colors"
           >
             {name} <span className="text-xs">▼</span>
           </a>
