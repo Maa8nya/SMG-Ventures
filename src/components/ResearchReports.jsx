@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import './ResearchReports.css';
 import pravinya from '../images/pravinya.png';
 import skyneski from '../images/skyneski.png';
 import smg from '../images/smg.png';
@@ -26,38 +25,111 @@ const reports = [
   },
 ];
 
+const containerStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', // Reduced min width for smaller cards
+  gap: '40px', // Increased gap
+  padding: '32px',
+  backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundAttachment: 'fixed',
+  backgroundBlendMode: 'overlay',
+};
+
+const cardStyle = {
+  position: 'relative',
+  height: '380px', // Reduced from 450px
+  overflow: 'hidden',
+  borderRadius: '12px',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+  cursor: 'pointer',
+};
+
+const imageLayerBase = {
+  position: 'absolute',
+  inset: 0,
+  backgroundSize: 'contain',
+  backgroundPosition: 'center',
+  transition: 'opacity 0.4s ease',
+  zIndex: 1,
+};
+
+const textLayerBase = {
+  position: 'absolute',
+  inset: 0,
+  backgroundColor: 'rgba(0, 0, 0, 0.95)',
+  color: 'white',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transform: 'translateX(100%)',
+  transition: 'transform 0.4s ease',
+  zIndex: 2,
+};
+
+const textContentStyle = {
+  padding: '24px',
+  textAlign: 'left',
+  maxWidth: '90%',
+};
+
+const titleStyle = {
+  fontSize: '1.8rem',
+  fontWeight: 600,
+  marginBottom: '1rem',
+  lineHeight: 1.4,
+};
+
+const subtitleStyle = {
+  fontSize: '1.05rem',
+  color: '#ccc',
+  lineHeight: 1.6,
+};
+
+// Custom component to handle hover animation via React state
+function ResearchCard({ report, index }) {
+  const [hovered, setHovered] = React.useState(false);
+
+  return (
+    <motion.div
+      key={index}
+      style={cardStyle}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.2, delay: index * 0.4 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          ...imageLayerBase,
+          backgroundImage: `url(${report.image})`,
+          opacity: hovered ? 0 : 1,
+          filter: 'brightness(0.9)'
+        }}
+      ></div>
+
+      <div
+        style={{
+          ...textLayerBase,
+          transform: hovered ? 'translateX(0)' : 'translateX(100%)',
+        }}
+      >
+        <div style={textContentStyle}>
+          <h2 style={titleStyle}>{report.title}</h2>
+          <p style={subtitleStyle}>{report.subtitle}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ResearchReports() {
   return (
-    <div className="research-container"
-    style={{
-    backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
-    backgroundBlendMode: 'overlay',
-  }}
-   >
+    <div style={containerStyle}>
       {reports.map((report, index) => (
-        <motion.div
-          key={index}
-          className="research-card"
-          initial={{ opacity: 0 }}
-whileInView={{ opacity: 1 }}
-transition={{ duration: 1.2, delay: index * 0.4 }}
-
-        >
-          <div
-            className="image-layer"
-            style={{ backgroundImage: `url(${report.image})` }}
-          ></div>
-
-          <div className="text-layer">
-            <div className="text-content">
-              <h2>{report.title}</h2>
-              <p>{report.subtitle}</p>
-            </div>
-          </div>
-        </motion.div>
+        <ResearchCard key={index} report={report} index={index} />
       ))}
     </div>
   );

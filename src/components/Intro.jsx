@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// S-M-G glow animation variants
+// Original glow animation with subtle enhancements
 const glowVariant = {
   hidden: {
     opacity: 0,
     scale: 0.8,
-    filter: "brightness(0.2)",
   },
   visible: (custom) => ({
     opacity: 1,
     scale: 1,
-    filter: "brightness(1)",
+    filter: "drop-shadow(0 0 8px rgba(255,88,89,0.3))",
     transition: {
       delay: custom * 0.4,
       duration: 0.9,
@@ -23,22 +22,33 @@ const glowVariant = {
 export default function Intro({ onFinish }) {
   const [stage, setStage] = useState("glow");
 
-useEffect(() => {
-  const totalGlowTime = 3 * 0.4 + 0.9; // ~2.1s
-  const fadeOutTime = 0.2;
+  useEffect(() => {
+    const totalGlowTime = 3 * 0.4 + 0.9; // ~2.1s
+    const fadeOutTime = 0.2;
 
-  // Stage 1: Fade
-  setTimeout(() => setStage("fade"), totalGlowTime * 1000);
-
-  // Stage 2: Main
-  setTimeout(() => {
-    setStage("main");
-  }, (totalGlowTime + fadeOutTime) * 1000);
-}, [onFinish]);
-
+    setTimeout(() => setStage("fade"), totalGlowTime * 1000);
+    setTimeout(() => setStage("main"), (totalGlowTime + fadeOutTime) * 1000);
+  }, [onFinish]);
 
   return (
     <div className="relative w-full min-h-screen bg-[#1b252c] overflow-hidden flex items-center justify-center px-4">
+      {/* Subtle animated background */}
+      <motion.div 
+        className="absolute inset-0"
+        animate={{
+          background: [
+            "radial-gradient(circle at 30% 50%, rgba(27,37,44,1) 0%, rgba(10,15,20,1) 100%)",
+            "radial-gradient(circle at 70% 50%, rgba(27,37,44,1) 0%, rgba(10,15,20,1) 100%)",
+          ]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear"
+        }}
+      />
+
       <AnimatePresence mode="wait">
         {stage !== "main" ? (
           <motion.div
@@ -85,67 +95,66 @@ useEffect(() => {
           </motion.div>
         ) : (
           <motion.div
-  key="main"
-  className="flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-6xl z-20"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1 }}
->
-  {/* Left: SMG Logo */}
-  <motion.img
-    src="smg.svg"
-    alt="smg"
-    className="w-[60%] max-w-[250px] md:w-[40%] md:max-w-[250px] h-auto"
-    initial={{ x: 100, opacity: 0 }}
-    animate={{ x: 0, opacity: 1 }}
-    transition={{ duration: 1, ease: "easeOut" }}
-  />
+            key="main"
+            className="flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-6xl z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            {/* Left: SMG Logo */}
+            <motion.img
+              src="smg.svg"
+              alt="smg"
+              className="w-[60%] max-w-[250px] md:w-[40%] md:max-w-[250px] h-auto"
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
 
-  {/* Right: Ventures + Tagline */}
-  <div className="flex flex-col items-center gap-6 w-full md:w-[60%] max-w-[500px]">
-    <motion.img
-      src="ventures.svg"
-      alt="ventures"
-      className="w-full h-auto invert"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{
-        opacity: [0, 1, 1, 0],
-        y: [30, 0, 0, -20],
-      }}
-      transition={{
-        duration: 2.8,
-        times: [0, 0.1, 0.9, 1],
-        ease: "easeInOut",
-        delay: 0.5,
-      }}
-    />
+            {/* Right: Ventures + Tagline */}
+            <div className="flex flex-col items-center gap-6 w-full md:w-[60%] max-w-[500px]">
+              <motion.img
+                src="ventures.svg"
+                alt="ventures"
+                className="w-full h-auto invert"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{
+                  opacity: [0, 1, 1, 0],
+                  y: [30, 0, 0, -20],
+                }}
+                transition={{
+                  duration: 2.8,
+                  times: [0, 0.1, 0.9, 1],
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
+              />
 
-    <motion.img
-      src="tagline.svg"
-      alt="tagline"
-      className="w-full h-auto invert"
-      style={{ clipPath: "inset(0% 100% 0% 0%)" }}
-      animate={{
-        clipPath: [
-          "inset(0% 100% 0% 0%)",
-          "inset(0% 0% 0% 0%)",
-          "inset(0% 0% 0% 0%)",
-          "inset(0% 100% 0% 0%)",
-        ],
-      }}
-      transition={{
-        duration: 2.8,
-        times: [0, 0.4, 0.7, 1],
-        ease: "easeInOut",
-        delay: 0.8,
-      }}
-      onAnimationComplete={() => {
-        if (onFinish) onFinish();
-      }}
-    />
-  </div>
-</motion.div>
-
+              <motion.img
+                src="tagline.svg"
+                alt="tagline"
+                className="w-full h-auto invert"
+                style={{ clipPath: "inset(0% 100% 0% 0%)" }}
+                animate={{
+                  clipPath: [
+                    "inset(0% 100% 0% 0%)",
+                    "inset(0% 0% 0% 0%)",
+                    "inset(0% 0% 0% 0%)",
+                    "inset(0% 100% 0% 0%)",
+                  ],
+                }}
+                transition={{
+                  duration: 2.8,
+                  times: [0, 0.4, 0.7, 1],
+                  ease: "easeInOut",
+                  delay: 0.8,
+                }}
+                onAnimationComplete={() => {
+                  if (onFinish) onFinish();
+                }}
+              />
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

@@ -1,32 +1,56 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import img1 from "../images/pravinya-logo.png";
 import img2 from "../images/skyneski-logo.png";
 import img3 from "../images/smg-logo.jpg";
 
 const services = [
-  { title: "Pravinya", image: img1 },
-  { title: "Sykneski", image: img2 },
-  { title: "SMG Builders", image: img3 },
+  { image: img1 },
+  { image: img2 },
+  { image: img3 }
 ];
 
+const cardVariants = {
+  center: { 
+    y: 0, 
+    scale: 1, 
+    opacity: 1,
+    zIndex: 2
+  },
+  top: { 
+    y: -220, 
+    scale: 0.95, 
+    opacity: 1,
+    zIndex: 1
+  },
+  bottom: { 
+    y: 220, 
+    scale: 0.95, 
+    opacity: 1,
+    zIndex: 1
+  }
+};
 
 export default function VerticalScroll() {
-  const [positions, setPositions] = useState([0, 1, 2]);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [keyIndex, setKeyIndex] = useState(0);
 
   useEffect(() => {
     if (paused) return;
 
     const interval = setInterval(() => {
-      const newPositions = [positions[2], positions[0], positions[1]];
-      setPositions(newPositions);
-      setKeyIndex((prev) => prev + 1);
-    }, 6000);
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [positions, paused]);
+  }, [paused]);
+
+  const getCardPosition = (index) => {
+    if (index === activeIndex) return 'center';
+    if (index === (activeIndex + 1) % services.length) return 'bottom';
+    if (index === (activeIndex - 1 + services.length) % services.length) return 'top';
+    return 'hidden';
+  };
 
   return (
     <div
@@ -37,11 +61,9 @@ export default function VerticalScroll() {
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         backgroundBlendMode: 'overlay',
-        
       }}
     >
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
         {/* Left Content */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -65,33 +87,33 @@ export default function VerticalScroll() {
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="flex flex-col gap-6 items-center w-full sm:w-4/5 md:w-[80%] mx-auto"
-          onClick={() => setPaused((prev) => !prev)}
+          className="relative h-[660px] w-full flex items-center justify-center"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {[0, 1, 2].map((i) => {
-            const isCenter = i === 1;
-            const currentService = services[positions[i]];
-
+          {services.map((service, index) => {
+            const position = getCardPosition(index);
+            
             return (
-              <div
-                key={`card-${i}`}
-                className={`w-full h-40 sm:h-48 md:h-64 flex items-center justify-center rounded-lg shadow-lg overflow-hidden transition-all duration-300 ${
-                  isCenter ? "z-10 opacity-100" : "z-0 opacity-10"
-                }`}
+              <motion.div
+                key={`card-${index}`}
+                className={`absolute w-full max-w-md rounded-lg overflow-hidden`}
+                variants={cardVariants}
+                initial="hidden"
+                animate={position}
+                transition={{
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 200,
+                  duration: 0.5
+                }}
               >
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={`${keyIndex}-${i}-${currentService.image}`}
-                    src={currentService.image}
-                    alt={currentService.title}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.5, ease: "easeInOut" }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-              </div>
+                <img
+                  src={service.image}
+                  alt="Client logo"
+                  className="w-full h-full object-contain border-4 border-black rounded-lg shadow-lg"
+                />
+              </motion.div>
             );
           })}
         </motion.div>
