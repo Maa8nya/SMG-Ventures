@@ -209,114 +209,88 @@ function About() {
 }
 
 function OurServices() {
-  const [activeService, setActiveService] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null); // which card is hovered
+  const [expandedIndex, setExpandedIndex] = useState(null); // which card has finished expanding
 
   return (
-    <section className="relative py-32 overflow-hidden bg-[#0e1420]">
-      {/* Floating construction elements */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute border border-gray-800 rounded-lg"
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            width: `${Math.random() * 200 + 100}px`,
-            height: `${Math.random() * 200 + 100}px`,
-            rotate: Math.random() * 360
-          }}
-          animate={{
-            y: [0, Math.random() * 40 - 20, 0],
-            x: [0, Math.random() * 40 - 20, 0],
-            transition: {
-              duration: 15 + Math.random() * 15,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }
-          }}
-        />
-      ))}
+    <section className="bg-black text-white py-20 px-6 min-h-screen">
+      <h2 className="text-4xl font-bold text-blue-400 text-center mb-16">
+        Our Services
+      </h2>
 
-      <div className="relative container mx-auto px-6 z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="inline-block mb-6"
-          >
-            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              Our Services
-            </span>
-          </h2>
-        </motion.div>
+      <div className="flex justify-center gap-4 overflow-x-auto no-scrollbar">
+        {services.map((service, index) => {
+          const isHovered = hoveredIndex === index;
+          const isExpanded = expandedIndex === index;
 
-        <div className="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
-          <div className="lg:w-2/5">
-            <div className="space-y-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative"
-                >
-                  <button
-                    onClick={() => setActiveService(index)}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${activeService === index ? 'bg-gradient-to-r from-blue-500/20 to-blue-900/10 border-l-4 border-blue-500' : 'bg-gray-900/50 hover:bg-gray-800/30'}`}
-                  >
-                    <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                    {activeService === index && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        transition={{ duration: 0.4 }}
-                        className="text-gray-300 text-sm"
-                      >
-                        {service.desc}
-                      </motion.p>
-                    )}
-                  </button>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:w-3/5">
-            <motion.div 
-              key={activeService}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="relative h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-gray-800 overflow-hidden"
+          return (
+            <motion.div
+              key={index}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => {
+                setHoveredIndex(null);
+                setExpandedIndex(null);
+              }}
+              animate={{ width: isHovered ? 280 : 60 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              onAnimationComplete={() => {
+                // Only set expanded if hovered and it's still hovered
+                if (isHovered) setExpandedIndex(index);
+              }}
+              className="h-[420px] rounded-2xl bg-gradient-to-b from-gray-800 to-gray-700 relative overflow-hidden border border-gray-600 flex flex-col justify-center items-center cursor-pointer"
             >
-              <div className="absolute inset-0 bg-[url('./blueprint-pattern.svg')] opacity-[3%]"></div>
-              <div className="absolute inset-0 flex items-center justify-center p-12">
-                <div className="text-center">
-                  <div className="text-6xl mb-6">🏗️</div>
-                  <h3 className="text-3xl font-bold text-white mb-4">{services[activeService].title}</h3>
-                  <p className="text-xl text-gray-300">{services[activeService].desc}</p>
-                </div>
-              </div>
+              {/* Vertical title (only when not expanded) */}
+              <AnimatePresence>
+                {!isExpanded && (
+                  <motion.div
+                    key="vertical-title"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute"
+                    style={{
+                      transform: "rotate(-90deg)",
+                      transformOrigin: "center",
+                      whiteSpace: "nowrap",
+                      fontSize: "0.875rem",
+                      fontWeight: "600",
+                      color: "#60a5fa",
+                    }}
+                  >
+                    {service.title}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Main content (only when expanded) */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    key="content"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 text-center"
+                  >
+                    <h3 className="text-xl font-bold text-blue-300 mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-300 leading-relaxed text-justify">
+                      {service.desc}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </section>
   );
 }
+
 
 function WhySMG() {
   return (

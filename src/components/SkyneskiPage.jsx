@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import skyneskiLogo from '../images/skyneski-logo.png';
+import Navbar from './Navbar';
 
 export default function SkyneskiPage() {
   const ref = useRef();
@@ -17,6 +18,7 @@ export default function SkyneskiPage() {
       ref={ref}
       className="min-h-screen bg-[#0a0a14] text-white font-sans overflow-hidden relative"
     >
+      <Navbar/>
       {/* Animated cosmic background */}
       <motion.div 
         className="fixed inset-0 bg-[url('https://assets.codepen.io/13471/sparkles.gif')] opacity-5 pointer-events-none"

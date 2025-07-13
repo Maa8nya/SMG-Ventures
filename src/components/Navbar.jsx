@@ -1,42 +1,72 @@
-import smgLogo from '../images/smg_ventures-logo.png';
-import smg_buildersLogo from '../images/smg-logo.jpg';
-import skyneskiLogo from '../images/skyneski-logo.png';
-import pravinyaLogo from '../images/pravinya-logo.png';
+import { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Scroll behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setVisible(false); // Hide navbar
+      } else {
+        setVisible(true); // Show navbar
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  // Nav links
+  const navLinks = [
+    { name: "Home", link: "/" },
+    { name: "Skyneski", link: "/skyneski" },
+    { name: "Pravinya", link: "/pravinya" },
+    { name: "SMG-Buiders", link: "/smg-builders" },
+    { name: "Contact", link: "/#contact" }, // use hash routes carefully
+  ];
+
   return (
-    <header className="flex justify-between items-center px-8 py-4 bg-[#0C0C0C] border-b border-[#2a2a2a] shadow-md">
-      {/* Logo & Dropdown */}
-      <div className="relative group">
-        <div className="flex items-center space-x-2 cursor-pointer">
-      <img src="./logo.svg" alt="SMG Logo" className="h-10 object-contain" />
-    </div>
-
-        <div className="absolute left-0 mt-3 bg-[#1f2937] rounded-lg shadow-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 p-4 space-y-3 z-20">
-          {[{ logo: skyneskiLogo, label: 'Sykneski' }, { logo: pravinyaLogo, label: 'Pravinya' }, { logo: smg_buildersLogo, label: 'SMG Builders and Constructers' }].map(({ logo, label }) => (
-            <div key={label} className="flex items-center space-x-2">
-              <img src={logo} alt={label} className="w-8 h-8 object-contain" />
-              <span className="text-sm text-white">{label}</span>
-            </div>
-          ))}
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      } bg-[#0C0C0C] border-b border-[#2a2a2a] shadow-md`}
+    >
+      <div className="flex justify-between items-center px-8 py-4">
+        {/* Logo */}
+        <div className="relative group">
+          <img src="/logo.svg" alt="SMG Logo" className="h-10 object-contain" />
         </div>
-      </div>
 
-      {/* Navigation Links */}
-      <nav className="flex space-x-8 text-sm">
-        {[
-          { name: "Careers", link: "#careers" },
-          { name: "Contact", link: "#contact" },
-        ].map(({ name, link }) => (
-          <a
-            key={name}
-            href={link}
-            className="flex items-center gap-1 text-[#DFE2E1] hover:text-[#FF5859] transition-colors"
-          >
-            {name} <span className="text-xs">▼</span>
-          </a>
-        ))}
-      </nav>
+        {/* Nav Links */}
+        <nav className="flex space-x-8 text-sm">
+          {navLinks.map(({ name, link }) => {
+            // If link is "/#contact", just check if pathname is "/"
+            const isActive =
+              link === location.pathname ||
+              (link.includes("#") && location.pathname === "/");
+
+            return (
+              <Link
+                key={name}
+                to={link}
+                className={`flex items-center gap-1 transition-colors ${
+                  isActive ? "text-[#FF5859]" : "text-[#DFE2E1] hover:text-[#FF5859]"
+                }`}
+              >
+                {name}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </header>
   );
 }
