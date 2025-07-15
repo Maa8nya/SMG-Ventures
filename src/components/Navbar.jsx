@@ -30,7 +30,7 @@ export default function Navbar() {
     { name: "Skyneski", link: "/skyneski" },
     { name: "Pravinya", link: "/pravinya" },
     { name: "SMG-Buiders", link: "/smg-builders" },
-    { name: "Contact", link: "/#contact" }, // use hash routes carefully
+    { name: "Contact", link: "/contact" }, 
   ];
 
   return (

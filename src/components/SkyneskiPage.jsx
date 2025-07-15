@@ -1,7 +1,17 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import skyneskiLogo from '../images/skyneski-logo.png';
+import skyneskiLogo from '../images/skyneski.png';
 import Navbar from './Navbar';
+
+// Import industry images (you'll need to add these to your project)
+import techIndustry from '../images/tech-industry.png';
+import ecommerceIndustry from '../images/ecommerce-industry.png';
+import healthcareIndustry from '../images/healthcare-industry.png';
+import educationIndustry from '../images/education-industry.png';
+import fintechIndustry from '../images/fintech-industry.png';
+import manufacturingIndustry from '../images/manufacturing-industry.png';
+import logisticsIndustry from '../images/logistics-industry.png';
+import startupIndustry from '../images/startup-industry.png';
 
 export default function SkyneskiPage() {
   const ref = useRef();
@@ -10,35 +20,109 @@ export default function SkyneskiPage() {
     offset: ["start start", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
     <div 
       ref={ref}
-      className="min-h-screen bg-[#0a0a14] text-white font-sans overflow-hidden relative"
+      className="min-h-screen bg-[#0a0a0a] text-white font-sans overflow-hidden relative"
     >
-      <Navbar/>
-      {/* Animated cosmic background */}
-      <motion.div 
-        className="fixed inset-0 bg-[url('https://assets.codepen.io/13471/sparkles.gif')] opacity-5 pointer-events-none"
-        style={{ y: backgroundY }}
-      />
+      {/* Subtle grid background */}
+      <div className="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')] opacity-50" />
+      
+      {/* Floating particles */}
+      <div className="fixed inset-0 opacity-10 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              width: Math.random() * 5 + 1 + 'px',
+              height: Math.random() * 5 + 1 + 'px',
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+            }}
+            animate={{
+              y: [0, (Math.random() - 0.5) * 100],
+              x: [0, (Math.random() - 0.5) * 100],
+              opacity: [0.1, 0.5, 0.1],
+            }}
+            transition={{
+              duration: Math.random() * 20 + 10,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+      </div>
 
+      <Navbar/>
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-8 py-24 max-w-7xl mx-auto z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1,
+          }}
+          transition={{ 
+            duration: 1,
+            ease: [0.2, 0.8, 0.2, 1]
+          }}
           className="relative mb-16"
         >
-          <div className="absolute -inset-4 bg-gradient-to-r from-[#00d9ff] to-[#00ffa3] rounded-full blur-xl opacity-20 animate-pulse"></div>
-          <img
-            src={skyneskiLogo}
-            alt="Skyneski Logo"
-            className="relative w-48 h-48 md:w-64 md:h-64 object-contain bg-white/5 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/10 z-10"
-          />
+          {/* New logo animation - Floating with subtle pulse */}
+          <motion.div
+            initial={{ y: -20 }}
+            animate={{ 
+              y: 0,
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'easeInOut'
+              }
+            }}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+            className="relative"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0.5 }}
+              animate={{ 
+                scale: 1,
+                opacity: 1,
+                transition: { duration: 1 }
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-[#4f46e5] to-[#6366f1] rounded-full opacity-20 blur-xl"
+            />
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 0 0px rgba(99, 102, 241, 0.2)",
+                  "0 0 0 15px rgba(99, 102, 241, 0)",
+                  "0 0 0 30px rgba(99, 102, 241, 0)"
+                ],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 1,
+                ease: "easeOut"
+              }}
+              className="absolute inset-0 rounded-full pointer-events-none"
+            />
+            <img
+              src={skyneskiLogo}
+              alt="Skyneski Logo"
+              className="relative w-48 h-48 md:w-64 md:h-64 object-contain bg-white/5 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/10 z-10"
+            />
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -48,36 +132,35 @@ export default function SkyneskiPage() {
           className="text-center max-w-4xl"
           style={{ y: textY }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d9ff] via-[#00ffa3] to-[#e11d48] animate-text">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-5xl md:text-7xl font-bold leading-tight mb-8"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4f46e5] to-[#6366f1]">
               Driven by Data.
             </span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e11d48] via-[#00ffa3] to-[#00d9ff] animate-text">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#4f46e5]">
               Inspired by Innovation.
             </span>
-          </h1>
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
             We are a forward-thinking technology company offering intelligent, scalable, and secure solutions that empower businesses to thrive in the digital age.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 217, 255, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-gradient-to-r from-[#00d9ff] to-[#00a3ff] rounded-full font-semibold shadow-lg relative overflow-hidden group"
-            >
-              <span className="relative z-10">Explore Our Solutions</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[#00a3ff] to-[#00d9ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(225, 29, 72, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-[#0a0a14] border border-[#e11d48] text-white rounded-full font-semibold hover:bg-[#e11d48]/10 transition-colors relative overflow-hidden group"
-            >
-              <span className="relative z-10">Our Process</span>
-              <span className="absolute inset-0 bg-[#e11d48]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </motion.button>
-          </div>
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center"
+          > 
+          </motion.div>
         </motion.div>
 
         <motion.div 
@@ -91,62 +174,111 @@ export default function SkyneskiPage() {
         </motion.div>
       </section>
 
-      {/* About Section */}
-      <section className="relative py-32 px-8 bg-[#0a0a14]/80 backdrop-blur-sm border-t border-b border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-          >
-            <div className="space-y-8">
-              <h2 className="text-4xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d9ff] to-[#00ffa3]">
-                  About Skyneski
-                </span>
-              </h2>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                At SYKNESKI, we believe that true innovation begins with insight. We specialize in delivering custom-built, secure, and scalable technology solutions driven by deep data analysis and an understanding of our clients' unique challenges.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Whether you're a startup aiming for fast growth or an enterprise scaling globally, we tailor our services to match your pace, purpose, and vision. We don't just develop — we partner with you to transform.
-              </p>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#00d9ff] to-[#00ffa3] rounded-xl blur-xl opacity-20"></div>
-              <div className="relative bg-[#0a0a14]/70 border border-white/10 rounded-xl p-8 shadow-2xl backdrop-blur-sm">
-                <h3 className="text-2xl font-semibold mb-6 text-[#00ffa3]">What Sets Us Apart</h3>
-                <ul className="space-y-4">
-                  {[
-                    "Data-Driven Decision Making",
-                    "Future-Proof & Scalable Architecture",
-                    "End-to-End IT Services Under One Roof",
-                    "Focus on Security, Speed & Simplicity"
-                  ].map((item, i) => (
-                    <motion.li 
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-3"
-                    >
-                      <span className="text-[#00d9ff] mt-1">•</span>
-                      <span className="text-gray-300">{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <section className="relative py-24 bg-[#0a0a0a]">
+  <div className="container mx-auto px-6 max-w-4xl">
+
+   {/* About Section Header with enhanced animation */}
+<motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+  viewport={{ once: true, margin: "-50px" }}
+  className="text-left mb-12"
+>
+  <div className="flex items-center gap-4 mb-4">
+    <motion.div 
+      initial={{ width: 0 }}
+      whileInView={{ width: 80 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      viewport={{ once: true }}
+      className="h-0.5 bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent"
+    />
+    <motion.span
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: 0.6 }}
+      viewport={{ once: true }}
+      className="text-[#3b82f6] uppercase tracking-widest text-sm font-medium"
+    >
+      Our Difference
+    </motion.span>
+  </div>
+  <motion.h2
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.3 }}
+    viewport={{ once: true }}
+    className="text-5xl font-bold text-[#3b82f6]"
+  >
+    About Us
+  </motion.h2>
+</motion.div>
+
+{/* Enhanced Animated About Card */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ 
+    duration: 0.8, 
+    ease: [0.16, 0.77, 0.47, 0.97],
+    delay: 0.4
+  }}
+  whileHover={{ 
+    scale: 1.02,
+    boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)"
+  }}
+  viewport={{ once: true, margin: "-50px" }}
+  className="relative bg-[#0f0f15] border border-white/10 rounded-xl p-8 md:p-10 backdrop-blur-md shadow-xl text-gray-300 cursor-default overflow-hidden"
+>
+  {/* Subtle background animation elements */}
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 0.1 }}
+    transition={{ duration: 1, delay: 0.8 }}
+    className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#3b82f6] blur-xl"
+  />
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 0.05 }}
+    transition={{ duration: 1, delay: 1 }}
+    className="absolute -left-20 bottom-0 w-40 h-40 rounded-full bg-[#3b82f6] blur-xl"
+  />
+  
+  {/* Text content with staggered animation */}
+  <div className="relative z-10">
+    <motion.p
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: 0.6 }}
+      viewport={{ once: true }}
+      className="text-lg leading-relaxed"
+    >
+      <motion.span 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.8 }}
+        className="font-semibold text-white"
+      >
+        Skyneski
+      </motion.span> isn't just another tech firm — we're the strategic innovation partner for businesses navigating digital transformation. We blend cutting-edge technology, data intelligence, and ethical design to build solutions that feel intuitive and future-proof.
+    </motion.p>
+    
+    <motion.p
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.9 }}
+      viewport={{ once: true }}
+      className="text-lg leading-relaxed mt-6"
+    >
+      Our interdisciplinary team brings together software engineering, AI, and business strategy to deliver systems that go beyond requirements. You don't just get code — you get a competitive advantage engineered for growth.
+    </motion.p>
+  </div>
+</motion.div>
+</div>
+</section>
 
       {/* Services Section */}
-      <section className="relative py-32 px-8 bg-[#0a0a14] overflow-hidden">
+      <section className="relative py-32 px-8 bg-[#0a0a0a] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -156,7 +288,7 @@ export default function SkyneskiPage() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d9ff] to-[#00ffa3]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4f46e5] to-[#6366f1]">
                 Our Expertise
               </span>
             </h2>
@@ -170,56 +302,32 @@ export default function SkyneskiPage() {
               {
                 title: "Custom Software Development",
                 description: "We design and develop tailor-made software solutions built to meet your specific business goals — intuitive, intelligent, and scalable.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                  </svg>
-                )
+                icon: "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
               },
               {
                 title: "Website Design & Development",
                 description: "From sleek front-end designs to powerful back-end frameworks, we create engaging websites that convert and perform.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                )
+                icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
               },
               {
                 title: "BPO/KPO Services",
                 description: "Our Business Process and Knowledge Process Outsourcing services help you improve operational efficiency and focus on core growth.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                )
+                icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
               },
               {
                 title: "Server & Infrastructure Management",
                 description: "Ensure uptime, speed, and security with our proactive server and infrastructure management solutions.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
-                )
+                icon: "M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
               },
               {
                 title: "Database Management & Security",
                 description: "Data is the core of your business. We secure, structure, and optimize your databases to enhance performance and protection.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                  </svg>
-                )
+                icon: "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
               },
               {
                 title: "Cloud Solutions & Technical Support",
                 description: "Migrate, manage, and maintain with confidence. Our cloud and tech support solutions are designed for reliability and agility.",
-                icon: (
-                  <svg className="w-8 h-8 text-[#00d9ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                  </svg>
-                )
+                icon: "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
               }
             ].map((service, i) => (
               <motion.div
@@ -230,27 +338,35 @@ export default function SkyneskiPage() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#00d9ff] to-[#00ffa3] rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                <div className="relative bg-[#0a0a14]/70 border border-white/10 rounded-xl p-8 h-full backdrop-blur-sm hover:border-[#00d9ff]/30 transition-all">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#4f46e5] to-[#6366f1] rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="relative bg-[#0f0f15] border border-white/10 rounded-xl p-8 h-full hover:border-[#4f46e5]/30 transition-all"
+                >
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 mt-1">
-                      {service.icon}
-                    </div>
+                    <motion.div 
+                      whileHover={{ rotate: 10 }}
+                      className="flex-shrink-0 mt-1"
+                    >
+                      <svg className="w-8 h-8 text-[#6366f1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={service.icon} />
+                      </svg>
+                    </motion.div>
                     <div>
-                      <h3 className="text-2xl font-semibold mb-3 text-[#00ffa3]">{service.title}</h3>
+                      <h3 className="text-2xl font-semibold mb-3 text-white">{service.title}</h3>
                       <p className="text-gray-400">{service.description}</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section className="relative py-32 px-8 bg-[#0a0a14]/80 backdrop-blur-sm border-t border-b border-white/5">
-        <div className="max-w-7xl mx-auto">
+      {/* Industries Section with Images */}
+      <section className="relative py-32 px-8 bg-[#0f0f15] backdrop-blur-sm border-t border-b border-white/5">
+        <div className="max-w-8xl mx-auto">
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -259,7 +375,7 @@ export default function SkyneskiPage() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ffa3] to-[#e11d48]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#4f46e5]">
                 Industries We Serve
               </span>
             </h2>
@@ -268,27 +384,68 @@ export default function SkyneskiPage() {
             </p>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              "Information Technology",
-              "E-Commerce",
-              "Healthcare",
-              "Education",
-              "FinTech",
-              "Manufacturing",
-              "Logistics",
-              "Startups & SMBs"
+              {
+                name: "Information Technology",
+                image: techIndustry,
+                description: "Cutting-edge solutions for tech companies"
+              },
+              {
+                name: "E-Commerce",
+                image: ecommerceIndustry,
+                description: "Scalable platforms for online retailers"
+              },
+              {
+                name: "Healthcare",
+                image: healthcareIndustry,
+                description: "Secure systems for medical providers"
+              },
+              {
+                name: "Education",
+                image: educationIndustry,
+                description: "Innovative learning technologies"
+              },
+              {
+                name: "FinTech",
+                image: fintechIndustry,
+                description: "Financial technology solutions"
+              },
+              {
+                name: "Manufacturing",
+                image: manufacturingIndustry,
+                description: "Industrial automation systems"
+              },
+              {
+                name: "Logistics",
+                image: logisticsIndustry,
+                description: "Supply chain optimization"
+              },
+              {
+                name: "Startups & SMBs",
+                image: startupIndustry,
+                description: "Growth-focused technology"
+              }
             ].map((industry, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="px-6 py-3 bg-[#0a0a14]/70 border border-white/10 rounded-full hover:bg-[#00d9ff]/10 hover:border-[#00d9ff]/30 transition-all backdrop-blur-sm"
+                className="relative group overflow-hidden rounded-xl"
               >
-                {industry}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                <div className="absolute inset-0 bg-[#4f46e5] opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
+                <img 
+                  src={industry.image} 
+                  alt={industry.name}
+                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute bottom-0 left-0 p-6 z-20">
+                  <h3 className="text-xl font-bold text-white">{industry.name}</h3>
+                  <p className="text-gray-300 text-sm mt-1">{industry.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -296,9 +453,9 @@ export default function SkyneskiPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-8 bg-gradient-to-br from-[#00d9ff] to-[#00a3ff] text-[#0a0a14] overflow-hidden">
+      <section className="relative py-32 px-8 bg-gradient-to-br from-[#4f46e5] to-[#6366f1] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('https://assets.codepen.io/13471/sparkles.gif')]"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div 
@@ -312,34 +469,56 @@ export default function SkyneskiPage() {
               Have a project in mind or a problem to solve? Talk to our experts today and discover how SYKNESKI can help you innovate smarter.
             </p>
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(10, 10, 20, 0.5)" }}
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 0 40px rgba(0, 0, 0, 0.3)",
+                transition: { duration: 0.3 }
+              }}
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-5 bg-[#0a0a14] text-white font-semibold rounded-full hover:bg-[#0a0a14]/90 transition shadow-xl relative overflow-hidden group"
+              className="px-12 py-5 bg-white text-[#4f46e5] font-semibold rounded-full hover:bg-white/90 transition shadow-xl relative overflow-hidden group"
             >
               <span className="relative z-10">Contact Us</span>
-              <span className="absolute inset-0 bg-[#0a0a14]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="absolute inset-0 bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </motion.button>
           </motion.div>
         </div>
       </section>
 
       {/* Elegant Footer */}
-      <footer className="relative bg-[#0a0a14] border-t border-white/5 py-16 px-8">
+      <footer className="relative bg-[#0a0a0a] border-t border-white/5 py-16 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <img src={skyneskiLogo} alt="Skyneski Logo" className="w-10 h-10 object-contain" />
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 1 }}
+                >
+                  <img src={skyneskiLogo} alt="Skyneski Logo" className="w-10 h-10 object-contain" />
+                </motion.div>
                 <span className="text-xl font-bold">SYKNESKI</span>
               </div>
               <p className="text-gray-400 mb-6">
                 Empowering businesses with scalable, secure, and intelligent digital solutions.
               </p>
-
+              <div className="flex gap-4">
+                {['twitter', 'linkedin', 'github'].map((social) => (
+                  <motion.a 
+                    key={social}
+                    whileHover={{ y: -3 }}
+                    href="#" 
+                    className="text-gray-400 hover:text-[#6366f1] transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d={`M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z`} />
+                    </svg>
+                  </motion.a>
+                ))}
+              </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#00d9ff]">Services</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Services</h3>
               <ul className="space-y-3">
                 {[
                   "Custom Software",
@@ -349,26 +528,34 @@ export default function SkyneskiPage() {
                   "IT Consulting",
                   "Technical Support"
                 ].map((item, i) => (
-                  <li key={i}>
+                  <motion.li
+                    key={i}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <a href="#" className="text-gray-400 hover:text-white transition-colors">{item}</a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#00d9ff]">Company</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Company</h3>
               <ul className="space-y-3">
                 {["About Us", "Our Team", "Careers", "Case Studies", "Blog", "Contact"].map((item, i) => (
-                  <li key={i}>
+                  <motion.li
+                    key={i}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <a href="#" className="text-gray-400 hover:text-white transition-colors">{item}</a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#00d9ff]">Contact</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Contact</h3>
               <address className="not-italic text-gray-400 space-y-3">
                 <p>123 Tech Avenue</p>
                 <p>San Francisco, CA 94107</p>
