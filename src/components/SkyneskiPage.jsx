@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import skyneskiLogo from '../images/skyneski.png';
 import Navbar from './Navbar';
 
@@ -275,7 +276,7 @@ export default function SkyneskiPage() {
   </div>
 </motion.div>
 </div>
-</section>
+</section>  
 
       {/* Services Section */}
       <section className="relative py-32 px-8 bg-[#0a0a0a] overflow-hidden">
@@ -477,7 +478,9 @@ export default function SkyneskiPage() {
               whileTap={{ scale: 0.95 }}
               className="px-12 py-5 bg-white text-[#4f46e5] font-semibold rounded-full hover:bg-white/90 transition shadow-xl relative overflow-hidden group"
             >
-              <span className="relative z-10">Contact Us</span>
+              <span className="relative z-10">
+                <Link to="/contact">Contact Us</Link>
+              </span>
               <span className="absolute inset-0 bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </motion.button>
           </motion.div>
@@ -501,20 +504,21 @@ export default function SkyneskiPage() {
               <p className="text-gray-400 mb-6">
                 Empowering businesses with scalable, secure, and intelligent digital solutions.
               </p>
+
               <div className="flex gap-4">
-                {['twitter', 'linkedin', 'github'].map((social) => (
-                  <motion.a 
-                    key={social}
-                    whileHover={{ y: -3 }}
-                    href="#" 
-                    className="text-gray-400 hover:text-[#6366f1] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d={`M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z`} />
-                    </svg>
-                  </motion.a>
-                ))}
+                <motion.a 
+                  whileHover={{ y: -3 }}
+                  href="https://www.instagram.com/smg_ventures?igsh=eXFiNzdsamZvOW9q"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#E1306C] transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7.5 2C4.462 2 2 4.462 2 7.5v9C2 19.538 4.462 22 7.5 22h9c3.038 0 5.5-2.462 5.5-5.5v-9C22 4.462 19.538 2 16.5 2h-9zm0 2h9C18.433 4 20 5.567 20 7.5v9c0 1.933-1.567 3.5-3.5 3.5h-9C5.567 20 4 18.433 4 16.5v-9C4 5.567 5.567 4 7.5 4zm9.25 2a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+                  </svg>
+                </motion.a>
               </div>
+
             </div>
 
             <div>
@@ -557,10 +561,10 @@ export default function SkyneskiPage() {
             <div>
               <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Contact</h3>
               <address className="not-italic text-gray-400 space-y-3">
-                <p>123 Tech Avenue</p>
-                <p>San Francisco, CA 94107</p>
-                <p>Email: info@skyneski.com</p>
-                <p>Phone: (123) 456-7890</p>
+                <p>1st Floor, 6th Cross, VV Nagara</p>
+                <p>Mandya, Karnataka-571401</p>
+                <p>Email: smgventures18@gmail.com</p>
+                <p>Phone: +91 6366631311</p>
               </address>
             </div>
           </div>

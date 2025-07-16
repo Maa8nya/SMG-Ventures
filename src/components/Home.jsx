@@ -37,7 +37,6 @@ export default function HomePage() {
           <VerticalScroll />
           <ResearchReports />
           <WhySMGVentures />
-          <Certifications />
           <Footer />
         </div>
       )}
