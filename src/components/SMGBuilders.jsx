@@ -12,7 +12,7 @@ const services = [
     {
       title: "Land Development",
       desc: "Transforming raw land into high-potential real estate assets.",
-      image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+      image: "https://th.bing.com/th/id/R.7da97573a7f27a35ff450d09cbfeb597?rik=0%2f39qTO%2bUBdU%2bg&riu=http%3a%2f%2framarealestate.com.au%2fwp-content%2fuploads%2f2021%2f12%2fland-development.jpg&ehk=C7VUibrlk9alrODGH6QeFbkXAWFo8lwpTNerQ2uSyTc%3d&risl=&pid=ImgRaw&r=0"
     },
     {
       title: "Residential & Commercial",
@@ -22,12 +22,12 @@ const services = [
     {
       title: "Real Estate Consulting",
       desc: "Expert investment advice, legal support & market analysis.",
-      image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+      image: "https://www.360realtors.com/360assets/images/real-estate-consulting.jpg"
     },
     {
       title: "Buy & Sell Property",
       desc: "Seamless transactions with trust and transparency.",
-      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+      image: "https://www.stlouiscountymn.gov/portals/0/Library/Buying-Selling-Property2_1.jpg"
     },
   ];
 
@@ -58,8 +58,33 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative min-h-screen bg-gradient-to-br from-[#1a120b] via-[#140e08] to-[#0d0a08] overflow-hidden"
+      className="relative min-h-screen overflow-hidden bg-[#0d0a08]"
     >
+      {/* Landscape-inspired background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Base terrain curve */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1a120b] to-transparent"></div>
+        
+        {/* Mountain silhouette */}
+        <svg 
+          className="absolute bottom-0 w-full"
+          viewBox="0 0 1200 300"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0,300 L0,150 C150,250 300,200 450,220 C600,240 750,180 900,150 C1050,120 1200,120 1200,150 L1200,300 Z" 
+            fill="#1a120b" 
+            opacity="0.8"
+          />
+        </svg>
+        
+        {/* Construction site elements */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxwYXR0ZXJuIGlkPSJjb25zdHJ1Y3Rpb24iIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMTAwIiB4Mj0iMTAwIiB5Mj0iMTAwIiBzdHJva2U9IiM4YjVhMmIiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNSw1Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjkwIiByPSIyIiBmaWxsPSIjOGI1YTJiIi8+CiAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9Ijk1IiByPSIxLjUiIGZpbGw9IiM4YjVhMmIiLz4KICAgIDxjaXJjbGUgY3g9IjYwIiBjeT0iODUiIHI9IjMiIGZpbGw9IiM4YjVhMmIiLz4KICAgIDxjaXJjbGUgY3g9IjkwIiBjeT0iOTIiIHI9IjIuNSIgZmlsbD0iI2IzOGI2ZCIvPgogIDwvcGF0dGVybj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2NvbnN0cnVjdGlvbikiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')]"></div>
+        
+        {/* Subtle sun glow */}
+        <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full bg-[#b38b6d] opacity-10 blur-3xl"></div>
+      </div>
+
       <div className="relative container mx-auto px-6 py-32 flex flex-col md:flex-row items-center z-10">
         <div className="md:w-2/3">
           <motion.h1
@@ -104,8 +129,15 @@ function HeroSection() {
             <motion.img
               src="./smg.svg"
               className="relative w-40 md:w-48 lg:w-56"
-              animate={{ scale: [1, 1.05, 1], rotate: [0, 3, -3, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ 
+                scale: [1, 1.05, 1],
+                rotate: [0, 3, -3, 0]
+              }}
+              transition={{ 
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
           </motion.div>
         </div>
