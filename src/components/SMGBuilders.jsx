@@ -1,29 +1,35 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+
 import Navbar from "./Navbar";
 
 const services = [
-  {
-    title: "Turnkey Construction",
-    desc: "Design to delivery — we manage it all with quality and precision.",
-  },
-  {
-    title: "Land Development",
-    desc: "Transforming raw land into high-potential real estate assets.",
-  },
-  {
-    title: "Residential & Commercial",
-    desc: "Creating beautiful homes and future-ready commercial spaces.",
-  },
-  {
-    title: "Real Estate Consulting",
-    desc: "Expert investment advice, legal support & market analysis.",
-  },
-  {
-    title: "Buy & Sell Property",
-    desc: "Seamless transactions with trust and transparency.",
-  },
-];
+    {
+      title: "Turnkey Construction",
+      desc: "Design to delivery — we manage it all with quality and precision.",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Land Development",
+      desc: "Transforming raw land into high-potential real estate assets.",
+      image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Residential & Commercial",
+      desc: "Creating beautiful homes and future-ready commercial spaces.",
+      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Real Estate Consulting",
+      desc: "Expert investment advice, legal support & market analysis.",
+      image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Buy & Sell Property",
+      desc: "Seamless transactions with trust and transparency.",
+      image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+    },
+  ];
 
 const points = [
   "Integrated Real Estate & Construction Solutions",
@@ -36,7 +42,7 @@ const points = [
 
 export default function SMGBuilders() {
   return (
-    <div className="bg-[#0a0f1a] text-white">
+    <div className="bg-[#0d0a08] text-[#f5f1ee]">
       <Navbar />
       <HeroSection />
       <About />
@@ -52,28 +58,10 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative min-h-screen bg-gradient-to-br from-[#0e1a2b] via-[#0a1220] to-[#0a0f1a] overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-[#1a120b] via-[#140e08] to-[#0d0a08] overflow-hidden"
     >
-      {/* Animated grid background */}
-      <div className="absolute inset-0 opacity-10">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute border-l border-gray-700"
-            style={{
-              left: `${(i + 1) * 5}%`,
-              height: '100%'
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ duration: 1, delay: i * 0.05 }}
-          />
-        ))}
-      </div>
-
       <div className="relative container mx-auto px-6 py-32 flex flex-col md:flex-row items-center z-10">
         <div className="md:w-2/3">
-
           <motion.h1
             initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
             animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
@@ -81,14 +69,16 @@ function HeroSection() {
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
             SMG Builders & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Constructors</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b38b6d] to-[#8b5a2b]">
+              Constructors
+            </span>
           </motion.h1>
 
           <motion.em
             initial={{ opacity: 0, filter: "blur(5px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="block text-xl md:text-2xl text-blue-300 mb-8 font-normal"
+            className="block text-xl md:text-2xl text-[#d2b48c] mb-8 font-normal"
           >
             Building Dreams, Creating Assets
           </motion.em>
@@ -97,9 +87,9 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-gray-300 max-w-3xl mb-10 leading-relaxed"
+            className="text-lg text-[#e6d5c3] max-w-3xl mb-10 leading-relaxed"
           >
-            At SMG Builders & Constructors – the real estate and construction vertical of SMG Ventures – we turn your visions into tangible value. Whether you're planning to buy, sell, or build, we provide expert-driven, transparent, and trusted services for every step of your real estate journey. From elegant residential spaces to future-ready commercial projects, we help you build more than structures — we help you build your future.
+            At SMG Builders & Constructors – the real estate and construction vertical of SMG Ventures – we turn your visions into tangible value. Whether you're planning to buy, sell, or build, we provide expert-driven, transparent, and trusted services for every step of your real estate journey.
           </motion.p>
         </div>
 
@@ -110,19 +100,12 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-blue-500/20 rounded-full blur-xl"></div>
+            <div className="absolute -inset-4 bg-[#8b5a2b]/20 rounded-full blur-xl"></div>
             <motion.img
               src="./smg.svg"
               className="relative w-40 md:w-48 lg:w-56"
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 3, -3, 0]
-              }}
-              transition={{ 
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+              animate={{ scale: [1, 1.05, 1], rotate: [0, 3, -3, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
         </div>
@@ -133,14 +116,15 @@ function HeroSection() {
 
 function About() {
   return (
-    <section className="relative py-32 overflow-hidden bg-[#0a0f1a]">
-      {/* Architectural blueprint pattern */}
+    <section className="relative py-32 overflow-hidden bg-[#0d0a08]">
+      {/* Wood plank pattern */}
       <div className="absolute inset-0 opacity-[3%]">
         <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
-          <pattern id="blueprint" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 0 40 L 40 0" stroke="#3b82f6" strokeWidth="0.5" />
+          <pattern id="plank-pattern" width="100" height="20" patternUnits="userSpaceOnUse">
+            <rect width="100" height="20" fill="#1a120b" />
+            <path d="M0 10 L100 10" stroke="#3a2c1a" strokeWidth="0.5" />
           </pattern>
-          <rect width="100%" height="100%" fill="url(#blueprint)" />
+          <rect width="100%" height="100%" fill="url(#plank-pattern)" />
         </svg>
       </div>
 
@@ -158,14 +142,14 @@ function About() {
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="w-20 h-0.5 bg-gradient-to-r from-blue-500 to-transparent mr-4"
+              className="w-20 h-0.5 bg-gradient-to-r from-[#8b5a2b] to-transparent mr-4"
             />
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
-              className="text-blue-400 font-medium tracking-widest text-sm"
+              className="text-[#b38b6d] font-medium tracking-widest text-sm"
             >
               OUR DIFFERENCE
             </motion.span>
@@ -178,9 +162,9 @@ function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -left-8 -top-8  h-32 bg-blue-500/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute -left-8 -top-8 h-32 bg-[#8b5a2b]/10 rounded-full filter blur-3xl"></div>
             <h2 className="text-4xl md:text-6xl font-bold mb-12 relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b38b6d] to-[#8b5a2b]">
                 About Us
               </span>
             </h2>
@@ -194,10 +178,10 @@ function About() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-blue-500/10 rounded-xl blur-xl"></div>
-              <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-xl border border-gray-800 backdrop-blur-sm">
-                <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-                  <strong className="text-white">SMG Builders & Constructors</strong> isn't just another real estate firm — it's the visionary execution arm of SMG Ventures. We blend engineering, aesthetics, and ethics to craft spaces that feel timeless and trusted.Our interdisciplinary team brings architecture, law, and development together to deliver homes and commercial environments that go beyond the blueprint. You don't just get a building — you get a legacy of value.
+              <div className="absolute -inset-4 bg-[#8b5a2b]/10 rounded-xl blur-xl"></div>
+              <div className="relative bg-gradient-to-br from-[#1a120b]/50 to-[#140e08]/30 p-8 rounded-xl border border-[#3a2c1a] backdrop-blur-sm">
+                <p className="text-lg text-[#e2d5d0] mb-6 leading-relaxed">
+                  <strong className="text-white">SMG Builders & Constructors</strong> isn't just another real estate firm — it's the visionary execution arm of SMG Ventures. We blend engineering, aesthetics, and ethics to craft spaces that feel timeless and trusted.
                 </p>
               </div>
             </motion.div>
@@ -209,83 +193,84 @@ function About() {
 }
 
 function OurServices() {
-  const [hoveredIndex, setHoveredIndex] = useState(null); // which card is hovered
-  const [expandedIndex, setExpandedIndex] = useState(null); // which card has finished expanding
+  
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section className="bg-black text-white py-20 px-6 min-h-screen">
-      <h2 className="text-4xl font-bold text-blue-400 text-center mb-16">
-        Our Services
-      </h2>
+    <section ref={containerRef} className="py-24 bg-gradient-to-b from-[#0f0a0a] to-[#140e0e] overflow-hidden">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="flex justify-center mb-6">
+            <div className="w-12 h-0.5 bg-[#8b5a2b]"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Our <span className="text-[#b38b6d]">Services</span>
+          </h2>
+          <p className="text-xl text-[#e6d5c3] max-w-2xl mx-auto">
+            End-to-end solutions tailored to your construction and real estate needs
+          </p>
+        </motion.div>
 
-      <div className="flex justify-center gap-4 overflow-x-auto no-scrollbar">
-        {services.map((service, index) => {
-          const isHovered = hoveredIndex === index;
-          const isExpanded = expandedIndex === index;
-
-          return (
-            <motion.div
-              key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => {
-                setHoveredIndex(null);
-                setExpandedIndex(null);
-              }}
-              animate={{ width: isHovered ? 280 : 60 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              onAnimationComplete={() => {
-                // Only set expanded if hovered and it's still hovered
-                if (isHovered) setExpandedIndex(index);
-              }}
-              className="h-[420px] rounded-2xl bg-gradient-to-b from-gray-800 to-gray-700 relative overflow-hidden border border-gray-600 flex flex-col justify-center items-center cursor-pointer"
-            >
-              {/* Vertical title (only when not expanded) */}
-              <AnimatePresence>
-                {!isExpanded && (
-                  <motion.div
-                    key="vertical-title"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute"
-                    style={{
-                      transform: "rotate(-90deg)",
-                      transformOrigin: "center",
-                      whiteSpace: "nowrap",
-                      fontSize: "0.875rem",
-                      fontWeight: "600",
-                      color: "#60a5fa",
-                    }}
-                  >
-                    {service.title}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Main content (only when expanded) */}
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    key="content"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 text-center"
-                  >
-                    <h3 className="text-xl font-bold text-blue-300 mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed text-justify">
-                      {service.desc}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <pattern id="brick-pattern" width="10" height="10" patternUnits="userSpaceOnUse">
+                <rect width="10" height="10" fill="none" stroke="#d97706" strokeWidth="0.3" />
+              </pattern>
+              <rect width="100%" height="100%" fill="url(#brick-pattern)" />
+            </svg>
+          </div>
+          
+          {/* Services grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+                className="relative group"
+                style={{ y }}
+              >
+                <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl h-full border border-amber-900/50 overflow-hidden">
+                  {/* Service Image with Hover Content */}
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    
+                    {/* Hover Content */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                      
+                      <p className="text-gray-200">{service.desc}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Always Visible Title */}
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold text-white text-center">{service.title}</h3>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -294,18 +279,19 @@ function OurServices() {
 
 function WhySMG() {
   return (
-    <section className="relative py-32 overflow-hidden bg-[#0a0f1a]">
-      {/* Floating particles */}
+    <section className="relative py-32 overflow-hidden bg-[#0d0a08]">
+      {/* Sawdust particles */}
       {[...Array(30)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-blue-500"
+          className="absolute rounded-sm bg-[#8b5a2b]"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
-            width: `${Math.random() * 6 + 2}px`,
-            height: `${Math.random() * 6 + 2}px`,
-            opacity: Math.random() * 0.3 + 0.1
+            width: `${Math.random() * 10 + 2}px`,
+            height: `${Math.random() * 2 + 1}px`,
+            opacity: Math.random() * 0.3 + 0.1,
+            rotate: Math.random() * 360
           }}
           animate={{
             y: [0, Math.random() * 100 - 50],
@@ -334,14 +320,14 @@ function WhySMG() {
             viewport={{ once: true }}
             className="inline-block mb-6"
           >
-            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-[#8b5a2b] to-transparent mx-auto"></div>
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              Why SMG Realty?
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b38b6d] to-[#8b5a2b]">
+              Why SMG Builders?
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-[#d4a373] max-w-2xl mx-auto">
             We don't just build structures — we build long-term relationships and high-value assets.
           </p>
         </motion.div>
@@ -356,12 +342,14 @@ function WhySMG() {
               viewport={{ once: true }}
               className="relative group"
             >
-              <div className="absolute -inset-1 bg-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl p-8 h-full border border-gray-800 overflow-hidden">
-                <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/10 rounded-full filter blur-xl"></div>
+              <div className="absolute -inset-1 bg-[#8b5a2b]/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative bg-gradient-to-b from-[#1a120b] to-[#140e08] rounded-xl p-8 h-full border border-[#3a2c1a] overflow-hidden">
+                {/* Wood knot accent */}
+                <div className="absolute -right-8 -top-8 w-32 h-32 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI1YTJiIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjEwLDUiLz4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI1YTJiIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjUsNSIvPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YjVhMmIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iMiwyIi8+Cjwvc3ZnPg==')] opacity-10"></div>
+                
                 <div className="relative z-10">
-                  <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                  <div className="w-12 h-12 bg-[#3a2c1a] rounded-lg flex items-center justify-center mb-6">
+                    <div className="w-6 h-6 bg-[#8b5a2b] rounded-full flex items-center justify-center text-[#f5f1ee] text-xs font-bold">
                       {index + 1}
                     </div>
                   </div>
@@ -371,7 +359,6 @@ function WhySMG() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
