@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import skyneskiLogo from '../images/skyneski.png';
 import Navbar from './Navbar';
 
-// Import industry images (you'll need to add these to your project)
+// Import industry images
 import techIndustry from '../images/tech-industry.png';
 import ecommerceIndustry from '../images/ecommerce-industry.png';
 import healthcareIndustry from '../images/healthcare-industry.png';
@@ -16,6 +16,7 @@ import startupIndustry from '../images/startup-industry.png';
 
 export default function SkyneskiPage() {
   const ref = useRef();
+  const expertiseSectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -23,6 +24,10 @@ export default function SkyneskiPage() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  const scrollToExpertise = () => {
+    expertiseSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div 
@@ -75,7 +80,6 @@ export default function SkyneskiPage() {
           }}
           className="relative mb-16"
         >
-          {/* New logo animation - Floating with subtle pulse */}
           <motion.div
             initial={{ y: -20 }}
             animate={{ 
@@ -155,13 +159,6 @@ export default function SkyneskiPage() {
           >
             We are a forward-thinking technology company offering intelligent, scalable, and secure solutions that empower businesses to thrive in the digital age.
           </motion.p>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
-          > 
-          </motion.div>
         </motion.div>
 
         <motion.div 
@@ -176,110 +173,105 @@ export default function SkyneskiPage() {
       </section>
 
       <section className="relative py-24 bg-[#0a0a0a]">
-  <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="text-left mb-12"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <motion.div 
+                initial={{ width: 0 }}
+                whileInView={{ width: 80 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-0.5 bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent"
+              />
+              <motion.span
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="text-[#3b82f6] uppercase tracking-widest text-sm font-medium"
+              >
+                Our Difference
+              </motion.span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-5xl font-bold text-[#3b82f6]"
+            >
+              About Us
+            </motion.h2>
+          </motion.div>
 
-   {/* About Section Header with enhanced animation */}
-<motion.div 
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: 0.2 }}
-  viewport={{ once: true, margin: "-50px" }}
-  className="text-left mb-12"
->
-  <div className="flex items-center gap-4 mb-4">
-    <motion.div 
-      initial={{ width: 0 }}
-      whileInView={{ width: 80 }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      viewport={{ once: true }}
-      className="h-0.5 bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent"
-    />
-    <motion.span
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.6 }}
-      viewport={{ once: true }}
-      className="text-[#3b82f6] uppercase tracking-widest text-sm font-medium"
-    >
-      Our Difference
-    </motion.span>
-  </div>
-  <motion.h2
-    initial={{ opacity: 0, y: 10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 0.3 }}
-    viewport={{ once: true }}
-    className="text-5xl font-bold text-[#3b82f6]"
-  >
-    About Us
-  </motion.h2>
-</motion.div>
-
-{/* Enhanced Animated About Card */}
-<motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ 
-    duration: 0.8, 
-    ease: [0.16, 0.77, 0.47, 0.97],
-    delay: 0.4
-  }}
-  whileHover={{ 
-    scale: 1.02,
-    boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)"
-  }}
-  viewport={{ once: true, margin: "-50px" }}
-  className="relative bg-[#0f0f15] border border-white/10 rounded-xl p-8 md:p-10 backdrop-blur-md shadow-xl text-gray-300 cursor-default overflow-hidden"
->
-  {/* Subtle background animation elements */}
-  <motion.div 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 0.1 }}
-    transition={{ duration: 1, delay: 0.8 }}
-    className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#3b82f6] blur-xl"
-  />
-  <motion.div 
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 0.05 }}
-    transition={{ duration: 1, delay: 1 }}
-    className="absolute -left-20 bottom-0 w-40 h-40 rounded-full bg-[#3b82f6] blur-xl"
-  />
-  
-  {/* Text content with staggered animation */}
-  <div className="relative z-10">
-    <motion.p
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: 0.6 }}
-      viewport={{ once: true }}
-      className="text-lg leading-relaxed"
-    >
-      <motion.span 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.8 }}
-        className="font-semibold text-white"
-      >
-        Skyneski
-      </motion.span> isn't just another tech firm — we're the strategic innovation partner for businesses navigating digital transformation. We blend cutting-edge technology, data intelligence, and ethical design to build solutions that feel intuitive and future-proof.
-    </motion.p>
-    
-    <motion.p
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.9 }}
-      viewport={{ once: true }}
-      className="text-lg leading-relaxed mt-6"
-    >
-      Our interdisciplinary team brings together software engineering, AI, and business strategy to deliver systems that go beyond requirements. You don't just get code — you get a competitive advantage engineered for growth.
-    </motion.p>
-  </div>
-</motion.div>
-</div>
-</section>  
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: [0.16, 0.77, 0.47, 0.97],
+              delay: 0.4
+            }}
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)"
+            }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="relative bg-[#0f0f15] border border-white/10 rounded-xl p-8 md:p-10 backdrop-blur-md shadow-xl text-gray-300 cursor-default overflow-hidden"
+          >
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#3b82f6] blur-xl"
+            />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.05 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="absolute -left-20 bottom-0 w-40 h-40 rounded-full bg-[#3b82f6] blur-xl"
+            />
+            
+            <div className="relative z-10">
+              <motion.p
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="text-lg leading-relaxed"
+              >
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                  className="font-semibold text-white"
+                >
+                  Skyneski
+                </motion.span> isn't just another tech firm — we're the strategic innovation partner for businesses navigating digital transformation. We blend cutting-edge technology, data intelligence, and ethical design to build solutions that feel intuitive and future-proof.
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                viewport={{ once: true }}
+                className="text-lg leading-relaxed mt-6"
+              >
+                Our interdisciplinary team brings together software engineering, AI, and business strategy to deliver systems that go beyond requirements. You don't just get code — you get a competitive advantage engineered for growth.
+              </motion.p>
+            </div>
+          </motion.div>
+        </div>
+      </section>  
 
       {/* Services Section */}
-      <section className="relative py-32 px-8 bg-[#0a0a0a] overflow-hidden">
+      <section ref={expertiseSectionRef} className="relative py-32 px-8 bg-[#0a0a0a] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -518,17 +510,16 @@ export default function SkyneskiPage() {
                   </svg>
                 </motion.a>
               </div>
-
             </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Services</h3>
               <ul className="space-y-3">
                 {[
-                  "Custom Software",
-                  "Web Development",
+                  "Custom Software Development",
+                  "Website Design",
                   "Cloud Solutions",
-                  "Data Analytics",
+                  "Database Management",
                   "IT Consulting",
                   "Technical Support"
                 ].map((item, i) => (
@@ -537,7 +528,12 @@ export default function SkyneskiPage() {
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">{item}</a>
+                    <button 
+                      onClick={scrollToExpertise}
+                      className="text-gray-400 hover:text-white transition-colors text-left w-full"
+                    >
+                      {item}
+                    </button>
                   </motion.li>
                 ))}
               </ul>
@@ -546,7 +542,7 @@ export default function SkyneskiPage() {
             <div>
               <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Company</h3>
               <ul className="space-y-3">
-                {["About Us", "Our Team", "Careers", "Case Studies", "Blog", "Contact"].map((item, i) => (
+                {["About Us", "Our Services", "Contact"].map((item, i) => (
                   <motion.li
                     key={i}
                     whileHover={{ x: 5 }}
