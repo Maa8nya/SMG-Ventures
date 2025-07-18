@@ -43,7 +43,7 @@ export default function Certifications() {
       
       ref={ref}
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hiddenm bg-black">
         <h2 className="text-7xl font-bold text-center z-10 mt-20 text-white">
           Certifications
         </h2>

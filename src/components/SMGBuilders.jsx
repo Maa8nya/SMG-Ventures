@@ -225,6 +225,7 @@ function About() {
 }
 
 function OurServices() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -270,36 +271,42 @@ function OurServices() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {services.map((service, index) => (
               <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-                className="relative group"
-                style={{ y }}
-              >
-                <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl h-full border border-amber-900/50 overflow-hidden">
-                  {/* Service Image with Hover Content */}
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    
-                    {/* Hover Content */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                      
-                      <p className="text-gray-200">{service.desc}</p>
-                    </div>
-                  </div>
-                  
-                  {/* Always Visible Title */}
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-white text-center">{service.title}</h3>
-                  </div>
-                </div>
-              </motion.div>
+  key={index}
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: index * 0.1 }}
+  viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+  className="relative group"
+  style={{ y }}
+  onMouseEnter={() => setHoveredIndex(index)}
+  onMouseLeave={() => setHoveredIndex(null)}
+>
+  <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl h-full border border-amber-900/50 overflow-hidden">
+    <div className="relative h-64 overflow-hidden">
+      <img 
+        src={service.image} 
+        alt={service.title}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      
+      {/* Slide-in black overlay with text */}
+      <motion.div 
+        initial={{ x: "100%" }}
+        animate={hoveredIndex === index ? { x: "0%" } : { x: "100%" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="absolute inset-0 bg-black/90 flex items-center justify-center p-6"
+      >
+        <p className="text-gray-200 text-center">{service.desc}</p>
+      </motion.div>
+
+    </div>
+
+    <div className="p-4">
+      <h3 className="text-xl font-semibold text-white text-center">{service.title}</h3>
+    </div>
+  </div>
+</motion.div>
+
             ))}
           </div>
         </div>

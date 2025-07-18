@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useState,useRef } from 'react';
 import { Link } from 'react-router-dom';
 import skyneskiLogo from '../images/skyneski.png';
 import Navbar from './Navbar';
@@ -29,6 +29,7 @@ export default function SkyneskiPage() {
     expertiseSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const [industryHoveredIndex, setIndustryHoveredIndex] = useState(null);
   return (
     <div 
       ref={ref}
@@ -67,68 +68,35 @@ export default function SkyneskiPage() {
       <Navbar/>
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-8 py-24 max-w-7xl mx-auto z-10">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
+      <section className="relative min-h-screen flex flex-col items-center justify-center  max-w-7xl mx-auto z-10">
+        
+    
+
+    
+    {/* **Subtle Floating Effect (Like a Hovering Tech Device)** */}
+    <motion.img
+          src="./sy-icon.png"
+          alt="Skyneski Logo"
+          className="w-60 h-60 object-contain mb-12"
+          initial={{ opacity: 0, filter: "blur(10px)" }}
           animate={{ 
             opacity: 1, 
-            scale: 1,
+            filter: "blur(0px)",
+            transition: { 
+              duration: 1.2,
+              ease: "easeOut"
+            }
           }}
-          transition={{ 
-            duration: 1,
-            ease: [0.2, 0.8, 0.2, 1]
+          whileHover={{
+            rotate: [0, 5, -5, 0],
+            scale: [1, 1.05, 1],
+            transition: {
+              duration: 0.8,
+              ease: "easeInOut"
+            }
           }}
-          className="relative mb-16"
-        >
-          <motion.div
-            initial={{ y: -20 }}
-            animate={{ 
-              y: 0,
-              transition: {
-                duration: 2,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut'
-              }
-            }}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3 }
-            }}
-            className="relative"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0.5 }}
-              animate={{ 
-                scale: 1,
-                opacity: 1,
-                transition: { duration: 1 }
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-[#4f46e5] to-[#6366f1] rounded-full opacity-20 blur-xl"
-            />
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 0 0px rgba(99, 102, 241, 0.2)",
-                  "0 0 0 15px rgba(99, 102, 241, 0)",
-                  "0 0 0 30px rgba(99, 102, 241, 0)"
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatDelay: 1,
-                ease: "easeOut"
-              }}
-              className="absolute inset-0 rounded-full pointer-events-none"
-            />
-            <img
-              src={skyneskiLogo}
-              alt="Skyneski Logo"
-              className="relative w-48 h-48 md:w-64 md:h-64 object-contain bg-white/5 backdrop-blur-sm rounded-full p-4 shadow-2xl border border-white/10 z-10"
-            />
-          </motion.div>
-        </motion.div>
+        />
+
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -141,15 +109,15 @@ export default function SkyneskiPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl font-bold leading-tight mb-8"
+            className="text-5xl md:text-7xl  leading-tight mb-8"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4f46e5] to-[#6366f1]">
-              Driven by Data.
+            <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-[#5d59b5] to-[#3e3e7e]">
+              Skyneski
             </span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#4f46e5]">
-              Inspired by Innovation.
-            </span>
+            <em><span className="text-transparent text-1xl md:text-3xl bg-clip-text bg-gradient-to-r from-[#5d59b5] to-[#3e3e7e]">
+              Driven by data. Inspired by Innovation.
+            </span></em>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -187,14 +155,14 @@ export default function SkyneskiPage() {
                 whileInView={{ width: 80 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="h-0.5 bg-gradient-to-r from-transparent via-[#3b82f6] to-transparent"
+                className="h-0.5 bg-gradient-to-r from-transparent via-[#3e3e7e] to-transparent"
               />
               <motion.span
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="text-[#3b82f6] uppercase tracking-widest text-sm font-medium"
+                className="text-[#3e3e7e] uppercase tracking-widest text-sm font-medium"
               >
                 Our Difference
               </motion.span>
@@ -204,7 +172,7 @@ export default function SkyneskiPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-5xl font-bold text-[#3b82f6]"
+              className="text-5xl font-bold text-[#5d59b5]"
             >
               About Us
             </motion.h2>
@@ -229,13 +197,13 @@ export default function SkyneskiPage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 0.1 }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#3b82f6] blur-xl"
+              className="absolute -right-10 -top-10 w-32 h-32 rounded-full bg-[#5d59b5] blur-xl"
             />
             <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 0.05 }}
               transition={{ duration: 1, delay: 1 }}
-              className="absolute -left-20 bottom-0 w-40 h-40 rounded-full bg-[#3b82f6] blur-xl"
+              className="absolute -left-20 bottom-0 w-40 h-40 rounded-full bg-[#5d59b5] blur-xl"
             />
             
             <div className="relative z-10">
@@ -281,7 +249,7 @@ export default function SkyneskiPage() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4f46e5] to-[#6366f1]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5d59b5] to-[#3e3e7e]">
                 Our Expertise
               </span>
             </h2>
@@ -331,7 +299,7 @@ export default function SkyneskiPage() {
                 viewport={{ once: true }}
                 className="relative group"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4f46e5] to-[#6366f1] rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#5d59b5] to-[#3e3e7e] rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                 <motion.div
                   whileHover={{ y: -5 }}
                   className="relative bg-[#0f0f15] border border-white/10 rounded-xl p-8 h-full hover:border-[#4f46e5]/30 transition-all"
@@ -341,7 +309,7 @@ export default function SkyneskiPage() {
                       whileHover={{ rotate: 10 }}
                       className="flex-shrink-0 mt-1"
                     >
-                      <svg className="w-8 h-8 text-[#6366f1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-8 h-8 text-[#5d59b5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={service.icon} />
                       </svg>
                     </motion.div>
@@ -359,94 +327,77 @@ export default function SkyneskiPage() {
 
       {/* Industries Section with Images */}
       <section className="relative py-32 px-8 bg-[#0f0f15] backdrop-blur-sm border-t border-b border-white/5">
-        <div className="max-w-8xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#4f46e5]">
-                Industries We Serve
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Our solutions adapt to your sector's unique challenges and opportunities
-            </p>
-          </motion.div>
+  <div className="max-w-8xl mx-auto">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-20"
+    >
+      <h2 className="text-4xl font-bold mb-6">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#5d59b5] to-[#3e3e7e]">
+          Industries We Serve
+        </span>
+      </h2>
+      <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+        Our solutions adapt to your sector's unique challenges and opportunities
+      </p>
+    </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Information Technology",
-                image: techIndustry,
-                description: "Cutting-edge solutions for tech companies"
-              },
-              {
-                name: "E-Commerce",
-                image: ecommerceIndustry,
-                description: "Scalable platforms for online retailers"
-              },
-              {
-                name: "Healthcare",
-                image: healthcareIndustry,
-                description: "Secure systems for medical providers"
-              },
-              {
-                name: "Education",
-                image: educationIndustry,
-                description: "Innovative learning technologies"
-              },
-              {
-                name: "FinTech",
-                image: fintechIndustry,
-                description: "Financial technology solutions"
-              },
-              {
-                name: "Manufacturing",
-                image: manufacturingIndustry,
-                description: "Industrial automation systems"
-              },
-              {
-                name: "Logistics",
-                image: logisticsIndustry,
-                description: "Supply chain optimization"
-              },
-              {
-                name: "Startups & SMBs",
-                image: startupIndustry,
-                description: "Growth-focused technology"
-              }
-            ].map((industry, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="relative group overflow-hidden rounded-xl"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                <div className="absolute inset-0 bg-[#4f46e5] opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
-                <img 
-                  src={industry.image} 
-                  alt={industry.name}
-                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-0 left-0 p-6 z-20">
-                  <h3 className="text-xl font-bold text-white">{industry.name}</h3>
-                  <p className="text-gray-300 text-sm mt-1">{industry.description}</p>
-                </div>
-              </motion.div>
-            ))}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        { name: "Information Technology", image: techIndustry, description: "Cutting-edge solutions for tech companies" },
+        { name: "E-Commerce", image: ecommerceIndustry, description: "Scalable platforms for online retailers" },
+        { name: "Healthcare", image: healthcareIndustry, description: "Secure systems for medical providers" },
+        { name: "Education", image: educationIndustry, description: "Innovative learning technologies" },
+        { name: "FinTech", image: fintechIndustry, description: "Financial technology solutions" },
+        { name: "Manufacturing", image: manufacturingIndustry, description: "Industrial automation systems" },
+        { name: "Logistics", image: logisticsIndustry, description: "Supply chain optimization" },
+        { name: "Startups & SMBs", image: startupIndustry, description: "Growth-focused technology" }
+      ].map((industry, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: i * 0.1 }}
+          viewport={{ once: true }}
+          onMouseEnter={() => setIndustryHoveredIndex(i)}
+          onMouseLeave={() => setIndustryHoveredIndex(null)}
+          className="relative group rounded-xl overflow-hidden border border-white/10 backdrop-blur-lg"
+        >
+          {/* Image with hover scale */}
+          <div className="relative h-64 overflow-hidden">
+            <img 
+              src={industry.image} 
+              alt={industry.name}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+
+            {/* Slide-in description overlay */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={industryHoveredIndex === i ? { x: "0%" } : { x: "100%" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute inset-0 bg-black/85 flex items-center justify-center p-6"
+            >
+              <p className="text-gray-300 text-sm text-center">{industry.description}</p>
+            </motion.div>
           </div>
-        </div>
-      </section>
+
+          {/* Title in separate container below */}
+          <div className="p-4 bg-[#14141c] border-t border-white/10">
+            <h3 className="text-lg font-semibold text-white text-center">{industry.name}</h3>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* CTA Section */}
-      <section className="relative py-32 px-8 bg-gradient-to-br from-[#4f46e5] to-[#6366f1] text-white overflow-hidden">
+      <section className="relative py-32 px-8 bg-gradient-to-br from-[#2c3c6f] to-[#4f4fde] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')]"></div>
         </div>
@@ -459,7 +410,7 @@ export default function SkyneskiPage() {
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-8">Let's Build the Future Together</h2>
             <p className="text-xl mb-12 max-w-2xl mx-auto">
-              Have a project in mind or a problem to solve? Talk to our experts today and discover how SYKNESKI can help you innovate smarter.
+              Have a project in mind or a problem to solve? Talk to our experts today and discover how SKYNESKI can help you innovate smarter.
             </p>
             <motion.button
               whileHover={{ 
@@ -489,9 +440,9 @@ export default function SkyneskiPage() {
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 1 }}
                 >
-                  <img src={skyneskiLogo} alt="Skyneski Logo" className="w-10 h-10 object-contain" />
+                  <img src="./sy-icon.png" alt="Skyneski Logo" className="w-10 h-10 object-contain" />
                 </motion.div>
-                <span className="text-xl font-bold">SYKNESKI</span>
+                <span className="text-xl font-bold">SKYNESKI</span>
               </div>
               <p className="text-gray-400 mb-6">
                 Empowering businesses with scalable, secure, and intelligent digital solutions.
@@ -513,7 +464,7 @@ export default function SkyneskiPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Services</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#5d59b5]">Services</h3>
               <ul className="space-y-3">
                 {[
                   "Custom Software Development",
@@ -540,7 +491,7 @@ export default function SkyneskiPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Company</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#5d59b5]">Company</h3>
               <ul className="space-y-3">
                 {["About Us", "Our Services", "Contact"].map((item, i) => (
                   <motion.li
@@ -555,7 +506,7 @@ export default function SkyneskiPage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-[#6366f1]">Contact</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#5d59b5]">Contact</h3>
               <address className="not-italic text-gray-400 space-y-3">
                 <p>1st Floor, 6th Cross, VV Nagara</p>
                 <p>Mandya, Karnataka-571401</p>

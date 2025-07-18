@@ -14,7 +14,7 @@ const reports = [
   {
     title: 'Driven by Data. Inspired by Innovation.',
     subtitle:
-      'Sykneski drives digital transformation with custom software, secure cloud solutions, and data-driven strategies. From robust backend systems to scalable tech architectures, we empower businesses to innovate and grow with confidence.',
+      'Skyneski drives digital transformation with custom software, secure cloud solutions, and data-driven strategies. From robust backend systems to scalable tech architectures, we empower businesses to innovate and grow with confidence.',
     image: skyneski,
   },
   {
@@ -29,7 +29,7 @@ const containerStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', // Reduced min width for smaller cards
   gap: '40px', // Increased gap
-  padding: '32px',
+  padding: '60px',
   backgroundImage: `url('/bg.png'), conic-gradient(at top left, #0c0c0c, #1a1a1a, #0c0c0c)`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
@@ -127,7 +127,7 @@ function ResearchCard({ report, index }) {
 
 export default function ResearchReports() {
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} >
       {reports.map((report, index) => (
         <ResearchCard key={index} report={report} index={index} />
       ))}

@@ -133,7 +133,7 @@ export default function Intro({ onFinish }) {
               <motion.img
                 src="tagline.svg"
                 alt="tagline"
-                className="w-full h-auto invert"
+                className="w-full h-auto invert ml-8"
                 style={{ clipPath: "inset(0% 100% 0% 0%)" }}
                 animate={{
                   clipPath: [
