@@ -49,8 +49,10 @@ const cardStyle = {
 const imageLayerBase = {
   position: 'absolute',
   inset: 0,
+  backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   backgroundPosition: 'center',
+  backgroundColor: 'white', // Fills remaining space with white
   transition: 'opacity 0.4s ease',
   zIndex: 1,
 };
