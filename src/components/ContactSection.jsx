@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import BubbleButton from './BubbleButton';
+import Navbar from './Navbar';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -75,6 +76,7 @@ const ContactSection = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white font-inter flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <Navbar />
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-red-500 rounded-full filter blur-3xl opacity-10"></div>
