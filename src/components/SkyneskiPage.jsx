@@ -1,7 +1,6 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState,useRef } from 'react';
 import { Link } from 'react-router-dom';
-import skyneskiLogo from '../images/skyneski.png';
 import Navbar from './Navbar';
 
 // Import industry images
@@ -75,9 +74,9 @@ export default function SkyneskiPage() {
     
     {/* **Subtle Floating Effect (Like a Hovering Tech Device)** */}
     <motion.img
-          src="./sy-icon.png"
+          src="./skyneski1.png"
           alt="Skyneski Logo"
-          className="w-60 h-60 object-contain mb-12"
+          className="w-60  object-contain mb-12"
           initial={{ opacity: 0, filter: "blur(10px)" }}
           animate={{ 
             opacity: 1, 

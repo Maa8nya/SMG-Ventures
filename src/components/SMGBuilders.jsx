@@ -15,10 +15,17 @@ const services = [
       image: "https://th.bing.com/th/id/R.7da97573a7f27a35ff450d09cbfeb597?rik=0%2f39qTO%2bUBdU%2bg&riu=http%3a%2f%2framarealestate.com.au%2fwp-content%2fuploads%2f2021%2f12%2fland-development.jpg&ehk=C7VUibrlk9alrODGH6QeFbkXAWFo8lwpTNerQ2uSyTc%3d&risl=&pid=ImgRaw&r=0"
     },
     {
-      title: "Residential & Commercial",
-      desc: "Creating beautiful homes and future-ready commercial spaces.",
+      title: "Commercial",
+      desc: "Creating beautiful future-ready commercial spaces.",
+      image: "https://wallpapercave.com/wp/wp2931974.jpg"
+    },
+
+    {
+      title: "Residential",
+      desc: "Creating beautiful homes.",
       image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
     },
+
     {
       title: "Real Estate Consulting",
       desc: "Expert investment advice, legal support & market analysis.",
@@ -58,7 +65,7 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative min-h-screen overflow-hidden bg-[#0d0a08]"
+      className="relative min-h-screen overflow-hidden bg-[#0d0a08] p-[120px]"
     >
       {/* Landscape-inspired background */}
       <div className="absolute inset-0 overflow-hidden">
@@ -126,6 +133,7 @@ function HeroSection() {
             className="relative"
           >
             <div className="absolute -inset-4 bg-[#8b5a2b]/20 rounded-full blur-xl"></div>
+            {/*
             <motion.img
               src="./smg.svg"
               className="relative w-40 md:w-48 lg:w-56"
@@ -138,7 +146,7 @@ function HeroSection() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-            />
+            />*/}
           </motion.div>
         </div>
       </div>
@@ -256,17 +264,7 @@ function OurServices() {
           </p>
         </motion.div>
 
-        <div className="relative max-w-6xl mx-auto">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <pattern id="brick-pattern" width="10" height="10" patternUnits="userSpaceOnUse">
-                <rect width="10" height="10" fill="none" stroke="#d97706" strokeWidth="0.3" />
-              </pattern>
-              <rect width="100%" height="100%" fill="url(#brick-pattern)" />
-            </svg>
-          </div>
-          
+        <div className="relative max-w-6xl mx-auto">  
           {/* Services grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {services.map((service, index) => (

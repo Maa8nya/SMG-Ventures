@@ -32,9 +32,8 @@ export default function HomePage() {
       {showIntro ? (
         <Intro onFinish={handleIntroFinish} />
       ) : (
-        <div className="min-h-screen bg-[conic-gradient(at_top_left,_#0c0c0c,_#1a1a1a,_#0c0c0c)] bg-no-repeat bg-cover bg-fixed text-[#DFE2E1] overflow-x-hidden ">
+        <div className="min-h-screen bg-black bg-no-repeat bg-cover bg-fixed text-[#DFE2E1] overflow-x-hidden ">
           <HomeContent />
-          
           <ResearchReports />
           <WhySMGVentures />
           <Certifications />

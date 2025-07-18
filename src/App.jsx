@@ -8,7 +8,7 @@ import PravinyaPage from "./components/Pravinya";
 
 function App() {
   return (
-    <div className="bg-[#141d26]  text-white">
+    <div className="bg-black text-white">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
