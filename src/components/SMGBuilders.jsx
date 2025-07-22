@@ -102,7 +102,7 @@ function HeroSection() {
           >
             SMG Builders & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b38b6d] to-[#8b5a2b]">
-              Constructors
+              Developers
             </span>
           </motion.h1>
 
