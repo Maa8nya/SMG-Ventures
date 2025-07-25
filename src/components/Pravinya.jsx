@@ -40,27 +40,67 @@ const cardVariants = {
 const offerings = [
   {
     title: 'Psychometric Career Assessment',
-    content: 'Empower your career with clarity through scientifically-backed tests interpreted by certified counsellors.',
+    content: 'Empower your career with clarity. Our scientifically-backed psychometric tests help students and early professionals discover core strengths, identify ideal career paths, and make informed decisions.',
+    fullContent: [
+      'Discover core strengths and personality traits',
+      'Identify ideal career paths based on aptitude and interest',
+      'Make informed academic and professional decisions',
+      'Certified Guidance: All assessments are conducted and interpreted by certified career counsellors who provide expert insights and personalized career planning support.'
+    ]
   },
   {
     title: 'Skill Development Workshops',
-    content: 'Hands-on training in communication, leadership, interview prep, and more — tailored to institutional needs.',
+    content: 'We deliver hands-on workshops for both technical and non-technical skills tailored to institutional needs.',
+    fullContent: [
+      'Communication & Public Speaking',
+      'Critical Thinking & Leadership',
+      'Resume Building & Interview Prep',
+      'Team Management & Business Etiquette',
+      'Design Thinking & Innovation',
+      'Tailor-Made for Institutions: All our workshops are custom-designed based on specific college or institutional needs, and are facilitated by experienced industry professionals.'
+    ]
   },
   {
     title: 'Technical Training',
-    content: 'Get industry-ready with training in Full-Stack Development, AI/ML, Cybersecurity, IoT, and more.',
+    content: 'Stay industry-ready with expert-led training in cutting-edge technologies.',
+    fullContent: [
+      'Full-Stack Web Development',
+      'Data Science & AI/ML',
+      'Cybersecurity & Cloud Computing',
+      'Mobile App Development',
+      'Embedded Systems & IoT'
+    ]
   },
   {
-    title: 'Live Industry Projects',
-    content: 'Collaborate on real-world projects to build a powerful portfolio and gain confidence.',
+    title: 'Project-Based Learning',
+    content: 'Work on live industry projects to build practical expertise and real-world experience.',
+    fullContent: [
+      'Collaborative Problem Solving',
+      'Real-World Product Development',
+      'Documentation & Presentations',
+      'Hands-on experience with industry tools and methodologies'
+    ]
   },
   {
-    title: 'Global Education Consulting',
-    content: 'Guidance for overseas education from university selection to application and visa process.',
+    title: 'Internship Programs',
+    content: 'Bridge the gap between learning and working through our structured internship opportunities.',
+    fullContent: [
+      'Remote, On-site & Hybrid Models',
+      'Industry Mentorship & Weekly Reviews',
+      'Certificate & Experience Letter Provided',
+      'Practical exposure to real business challenges'
+    ]
   },
   {
-    title: 'Placement & Internship Support',
-    content: 'We help you land roles that align with your passion and skills — both locally and globally.',
+    title: 'Placement Support',
+    content: 'We help you transition from education to employment with confidence.',
+    fullContent: [
+      'Resume & LinkedIn Profile Optimization',
+      'Mock Interviews & Career Coaching',
+      'Access to Job Portals & Partner Network',
+      'Campus Drives & Hiring Events',
+      'Personalized job matching based on skills and interests'
+    ]
   },
 ];
 
@@ -130,7 +170,22 @@ function HeroSection() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col items-center"
         >
+          {/* Pravinya Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6"
+          >
+            <img 
+              src="./pravinya-bulb.png"  
+              alt="PravinyaBulb"
+              className="h-24 w-auto"  
+            />
+          </motion.div>
+          
           <motion.h1 
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-2 text-white tracking-tight"
             style={{
@@ -176,30 +231,6 @@ function HeroSection() {
         >
           Pravinya is a forward-thinking educational and career development company committed to equipping students and professionals with the skills, experiences, and insights they need to thrive in today's fast-changing global landscape.
         </motion.p>
-
-        {/* CTA Button with improved hover state */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <motion.button
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 10px 25px -5px rgba(255,255,255,0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-indigo-600 font-semibold rounded-full text-base sm:text-lg shadow-xl relative overflow-hidden group transition-all duration-300"
-          >
-            <span className="relative z-10">Explore Programs</span>
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '0%' }}
-              transition={{ duration: 0.4 }}
-            />
-          </motion.button>
-        </motion.div>
 
         {/* Scroll indicator with smoother animation */}
         <motion.div
@@ -262,9 +293,9 @@ function OfferingSection() {
     physcImg,    // Psychometric Career Assessment
     skillImg,    // Skill Development Workshops
     liveImg,     // Technical Training
-    liveImg,     // Live Industry Projects
-    gobalImg,    // Global Education Consulting
-    placementImg // Placement & Internship Support
+    liveImg,     // Project-Based Learning
+    gobalImg,    // Internship Programs
+    placementImg // Placement Support
   ];
 
   return (
@@ -322,9 +353,6 @@ function OfferingSection() {
                     <p className="text-sm text-gray-600 line-clamp-3">
                       {item.content}
                     </p>
-                    <button className="mt-4 px-4 py-2 bg-[#7c3aed] text-white text-sm rounded-lg hover:bg-[#6d28d9] transition-colors self-start">
-                      Learn more
-                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -383,7 +411,7 @@ export default function PravinyaPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              At Pravinya, we're not just another training institute - we're career architects building futures
+              We offer a comprehensive ecosystem that supports individuals at every stage of their career journey — from skill development to placements and overseas education.
             </motion.p>
           </motion.div>
 
@@ -408,9 +436,9 @@ export default function PravinyaPage() {
                 }}
               />
               <div className="relative z-10 bg-white p-8 rounded-2xl shadow-xl border border-[#e9d5ff]">
-                <h3 className="text-2xl font-bold text-[#4c1d95] mb-4">Our Story</h3>
+                <h3 className="text-2xl font-bold text-[#4c1d95] mb-4">Our Mission</h3>
                 <p className="text-[#4c1d95]/90 mb-6">
-                  Founded by industry veterans frustrated with the gap between academia and employment, Pravinya was born from a simple idea: career development should be personalized, practical, and powerful.
+                  At Pravinya, we're committed to equipping students and professionals with the skills, experiences, and insights they need to thrive in today's fast-changing global landscape.
                 </p>
                 <div className="space-y-4">
                   <motion.div 
@@ -423,8 +451,8 @@ export default function PravinyaPage() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-[#4c1d95]">2015</h4>
-                      <p className="text-sm text-[#4c1d95]/80">Founded with 3 team members</p>
+                      <h4 className="font-semibold text-[#4c1d95]">Holistic Approach</h4>
+                      <p className="text-sm text-[#4c1d95]/80">From psychometric assessments to placement support</p>
                     </div>
                   </motion.div>
                   <motion.div 
@@ -437,8 +465,8 @@ export default function PravinyaPage() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-[#4c1d95]">50+</h4>
-                      <p className="text-sm text-[#4c1d95]/80">Industry partnerships established</p>
+                      <h4 className="font-semibold text-[#4c1d95]">Industry-Aligned</h4>
+                      <p className="text-sm text-[#4c1d95]/80">Programs guided by industry trends and expert mentors</p>
                     </div>
                   </motion.div>
                 </div>
@@ -456,7 +484,7 @@ export default function PravinyaPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white p-6 rounded-xl shadow-lg border border-[#e9d5ff]"
               >
-                <h3 className="text-xl font-bold text-[#4c1d95] mb-3">Our Approach</h3>
+                <h3 className="text-xl font-bold text-[#4c1d95] mb-3">Our Methodology</h3>
                 <p className="text-[#4c1d95]/90">
                   We combine psychometric insights with industry needs to create personalized career pathways. Our 360° development model ensures students gain both technical skills and essential soft skills.
                 </p>
@@ -466,9 +494,9 @@ export default function PravinyaPage() {
                 whileHover={{ y: -5 }}
                 className="bg-white p-6 rounded-xl shadow-lg border border-[#e9d5ff]"
               >
-                <h3 className="text-xl font-bold text-[#4c1d95] mb-3">Our Impact</h3>
+                <h3 className="text-xl font-bold text-[#4c1d95] mb-3">Global Reach</h3>
                 <p className="text-[#4c1d95]/90">
-                  With a 95% placement rate and alumni at top global companies, we've proven that our methodology works. But our real success? Seeing students discover careers they're truly passionate about.
+                  Our overseas education consulting helps students navigate university selection, documentation, visa processes, and pre-departure orientation for global opportunities.
                 </p>
               </motion.div>
             </motion.div>
@@ -522,8 +550,8 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "Certified Career Assessments",
-                description: "Science-backed psychometric tests analyzed by certified professionals",
+                title: "Psychometric Tests",
+                description: "Science-backed assessments analyzed by certified career counsellors",
                 animation: {
                   hidden: { opacity: 0, x: -50 },
                   visible: { 
@@ -544,8 +572,8 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "Industry-Expert Training",
-                description: "Learn from professionals with real-world experience in top companies",
+                title: "Custom Workshops",
+                description: "Tailor-made programs designed for your institution's specific needs",
                 animation: {
                   hidden: { opacity: 0, y: 50 },
                   visible: { 
@@ -566,8 +594,8 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "Tailored Workshops",
-                description: "Customized programs designed for your institution's specific needs",
+                title: "Technical Training",
+                description: "Expert-led courses in Full-Stack, AI/ML, Cybersecurity, IoT and more",
                 animation: {
                   hidden: { opacity: 0, x: 50 },
                   visible: { 
@@ -588,7 +616,7 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "Real-World Projects",
+                title: "Live Projects",
                 description: "Gain practical experience with actual industry case studies",
                 animation: {
                   hidden: { opacity: 0, scale: 0.8 },
@@ -610,8 +638,8 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "Global Opportunities",
-                description: "Access to international education and placement networks",
+                title: "Global Education",
+                description: "Complete guidance for overseas university applications",
                 animation: {
                   hidden: { opacity: 0, rotate: -10 },
                   visible: { 
@@ -632,8 +660,8 @@ export default function PravinyaPage() {
                     </svg>
                   </motion.div>
                 ),
-                title: "End-to-End Support",
-                description: "Comprehensive guidance from training to placement",
+                title: "Placement Support",
+                description: "End-to-end assistance from resume building to job placement",
                 animation: {
                   hidden: { opacity: 0, y: 30 },
                   visible: { 
@@ -665,62 +693,8 @@ export default function PravinyaPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Animated Stats Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mt-20 bg-gradient-to-r from-[#7c3aed] to-[#5b21b6] rounded-2xl p-8 text-white relative overflow-hidden"
-          >
-            <motion.div 
-              className="absolute inset-0 opacity-10"
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 100%'],
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear"
-              }}
-              style={{
-                backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-                backgroundSize: '20px 20px'
-              }}
-            />
-            <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              {[
-                { number: "10,000+", label: "Students Trained" },
-                { number: "95%", label: "Placement Rate" },
-                { number: "50+", label: "Industry Experts" },
-                { number: "15+", label: "Global Partners" }
-              ].map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-4"
-                >
-                  <motion.div 
-                    className="text-3xl md:text-4xl font-bold mb-2"
-                    initial={{ y: 20 }}
-                    whileInView={{ y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    {stat.number}
-                  </motion.div>
-                  <div className="text-sm md:text-base opacity-90">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+       </div>
+       </section>
 
       {/* CTA Section */}
       <section className="bg-gradient-to-br from-[#c4b5fd] to-[#a78bfa] py-16 sm:py-24 px-4 sm:px-6 text-center text-[#4c1d95] relative overflow-hidden">
